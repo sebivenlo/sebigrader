@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sebigrader;
 
 import java.nio.file.Path;
@@ -14,13 +9,10 @@ import org.xml.sax.SAXException;
 
 /**
  *
- * @author Pieter van den Hombergh (879417) {@code p.vandenhombergh@fontys.nl}
+ * @author Pieter van den Hombergh {@code pieter.vandenhombergh@google.com}
  */
 class GradingHandler extends BaseHandler {
 
-    //private List<GraderConsideration> considerations = new ArrayList<>();
-    //private final Map<String,Map<String, Double>> grades = new HashMap<>();
-    // exam, id, graderecord
     Map<String, Map<Integer, GradeRecord>> grades;
    private String testMethod = null;
     private String text = "";

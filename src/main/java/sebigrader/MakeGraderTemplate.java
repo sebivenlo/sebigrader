@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
 import java.util.logging.Level;
+import static java.util.logging.Level.CONFIG;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -31,6 +32,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.SAXException;
+import static sebigrader.Settings.SETTINGS;
 
 /**
  *
@@ -55,7 +57,7 @@ class MakeGraderTemplate implements FileVisitor<Path>, Runnable {
         handler = thandler;
         try {
             for ( String project : projectOrder ) {
-                System.out.println( "work for project '" + project + '\'' );
+//                System.out.println( "work for project '" + project + '\'' );
                 Path projectDir = startingDir.resolveSibling( "examsolution/"
                         + project );
                 Files.walkFileTree( projectDir, this );
@@ -67,7 +69,7 @@ class MakeGraderTemplate implements FileVisitor<Path>, Runnable {
         printQuestionInserts( "questions.csv" );
         GradingHandler gradingHandler = new GradingHandler( consMap );
         handler = gradingHandler;
-        Path sw = Paths.get( resultsDir );
+        Path sw = Paths.get( resultsDir=SETTINGS.get( "sandboxes") );
         try {
             Files.walkFileTree( sw, this );
         } catch ( IOException ex ) {
@@ -79,7 +81,7 @@ class MakeGraderTemplate implements FileVisitor<Path>, Runnable {
 
     private void printScores( String fileName, GradingHandler gradingHandler ) {
         try ( PrintStream out = new PrintStream( fileName ) ) {
-            out.println( "event,stick_nr,task,passFail,score" );
+            out.println( "\"event\",\"stick_nr\",\"task\",\"passFail\",\"score\"" );
             for ( Map.Entry<String, Map<Integer, GradeRecord>> e
                     : gradingHandler.getGrades().entrySet() ) {
                 Map<Integer, GradeRecord> examGrades = e.getValue();
@@ -155,48 +157,15 @@ class MakeGraderTemplate implements FileVisitor<Path>, Runnable {
         }
     }
 
-    static final String PROP_FILENAME = "sebigrader.properties";
-    static Properties properties;
-
     public static void main( String[] args ) throws IOException {
-        loadProperties();
 
         try ( PrintStream out = new PrintStream( "correction.xml" ); ) {
-            Path startingDir = Paths.get( resultsDir );
+            Path startingDir = Paths.get( SETTINGS.get( resultsDir ) );
             //TestReportVisitor visitor= new TestReportVisitor(new TestReportHandler());
             MakeGraderTemplate grader
                     = new MakeGraderTemplate( startingDir, out );
             grader.run();
         }
-    }
-
-    private static Pattern SUBTREES_TO_SKIP = Pattern.compile( "(classes|empty|generated-sources)$" );
-    private static Pattern TEST_RESULT_FILE_PATTERN = Pattern.compile(
-            "^.*TestSuites?\\.xml$" );
-
-    private static String resultsDirEnding= "results";
-    
-    private static void loadProperties() throws IOException {
-        properties = new Properties();
-        // first attempt to get a normal file from the well known location
-        InputStream inputStream = null;
-        String usedFile = PROP_FILENAME;
-        boolean foundFile = false;
-        try {
-            File f = new File( usedFile );
-            inputStream = new FileInputStream( f );
-            foundFile = true;
-        } catch ( FileNotFoundException ignored ) {
-        }
-        System.out.println( "inputStream filename = " + usedFile );
-        properties.load( inputStream );
-        properties.forEach( ( a, b ) -> System.out.println( a + " = " + b ) );
-
-        String subtreesSkipped = properties.getProperty( "subtrees_to_skip", "(classes|empty|generated-sources)$" );
-        SUBTREES_TO_SKIP = Pattern.compile( subtreesSkipped );
-        String testResultFilePattern = properties.getProperty("results_file_pattern", "^.*TestSuites?\\.xml$" );
-        TEST_RESULT_FILE_PATTERN = Pattern.compile( testResultFilePattern );
-        resultsDirEnding = properties.getProperty("result_dir_ending", "results");
     }
 
     private void doFile( Path p ) {
@@ -206,7 +175,7 @@ class MakeGraderTemplate implements FileVisitor<Path>, Runnable {
             saxParser.parse( p.toFile(), handler );
 
         } catch ( ParserConfigurationException | SAXException | IOException e ) {
-            e.printStackTrace();
+            Logger.getGlobal().fine(e.getMessage());
         }
     }
 
@@ -215,13 +184,15 @@ class MakeGraderTemplate implements FileVisitor<Path>, Runnable {
     @Override
     public FileVisitResult preVisitDirectory( Path dir,
             BasicFileAttributes attrs ) throws IOException {
-        //System.out.println( "pre visiting dir = " + dir);
+        System.out.println( "pre visiting dir = " + dir );
         String dirToString = dir.toAbsolutePath().normalize().toString();
-        if ( dir.toString().endsWith( "results" ) ) {
-            //System.err.println( "found build at  = " + dir );
+        String ending = SETTINGS.get( "results_dir_ending" );
+        System.out.println( "ending = " + ending );
+        if ( dir.toString().endsWith( ending ) ) {
+            System.err.println( "found build at  = " + dir );
             handler.forPath( dir );
         }
-        if ( SUBTREES_TO_SKIP.matcher( dirToString ).matches() ) {
+        if ( SETTINGS.SUBTREES_TO_SKIP.matcher( dirToString ).matches() ) {
             System.err.println( "skipping path " + dirToString );
             return FileVisitResult.SKIP_SUBTREE;
         } else {
@@ -234,11 +205,14 @@ class MakeGraderTemplate implements FileVisitor<Path>, Runnable {
     public FileVisitResult visitFile( Path file, BasicFileAttributes attrs )
             throws IOException {
         String fileName = file.getFileName().toString();
-        if ( TEST_RESULT_FILE_PATTERN.matcher( fileName ).matches() ) {
+        System.out.println( "fileName = " + fileName );
+        if ( SETTINGS.TEST_RESULT_FILE_PATTERN.matcher( fileName ).matches() ) {
+            System.err.println( "filename matches: " + fileName + " pattern /" + SETTINGS.TEST_RESULT_FILE_PATTERN.pattern() + '/' );
+            
             System.err.println( "visit  " + file.toAbsolutePath() );
             doFile( file );
         } else {
-            //System.err.println("filename does not match "+fileName +" pattern /"+TEST_RESULT_FILE_PATTERN.pattern()+ '/');
+            System.err.println( "filename does not match " + fileName + " pattern /" + SETTINGS.TEST_RESULT_FILE_PATTERN.pattern() + '/' );
         }
         return CONTINUE;
     }
@@ -258,7 +232,7 @@ class MakeGraderTemplate implements FileVisitor<Path>, Runnable {
     private void printQuestionInserts( String fileName ) {
         try ( PrintStream out = new PrintStream( fileName ); ) {
             out.println(
-                    "event,project,task,qid,testmethod,weight" );
+                    "\"event\",\"project\",\"task\",\"qid\",\"testmethod\",\"weight\"" );
             for ( String project : consMap.keySet() ) {
                 Map<String, GraderConsideration> cm = consMap.get( project );
                 printConsiderationForProject( cm, out, project );
@@ -278,7 +252,7 @@ class MakeGraderTemplate implements FileVisitor<Path>, Runnable {
             GraderConsideration gc = e.getValue();
             int id = gc.getId();
             String ids = String.format( "Q%02d", id );
-            out1.println( "" + event + "," + project + "," + id + "," + ids + "," + gc.getTestMethod() + ",5" );
+            out1.println( "\"" + event + "\",\"" + project + "\"," + id + ",\"" + ids + "\",\"" + gc.getTestMethod() + "\",5" );
 
         } );
     }

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import org.xml.sax.helpers.DefaultHandler;
+import static sebigrader.Settings.SETTINGS;
 
 /**
  *
@@ -29,11 +30,13 @@ public class BaseHandler extends DefaultHandler {
         String[] fnParts = path.toAbsolutePath().normalize().toString().split( "/" );
         for ( int i = 0; i < fnParts.length; i++ ) {
             if ( i > 0 ) {
-                if ( fnParts[ i ].equals( "build" ) ) {
+                if ( fnParts[ i ].equals( SETTINGS.BUILD_DIR ) ) {
                     project = fnParts[ i - 1 ];
                     if ( i > 2 ) {
                         exam = fnParts[ i - 2 ];
                     }
+                    System.out.println( "project = " + project);
+                    System.out.println( "exam = " + exam);
                     break;
                 }
             }

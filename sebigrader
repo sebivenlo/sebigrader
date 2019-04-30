@@ -1,0 +1,8 @@
+#!/bin/bash
+
+## bsd  readlink will not work, so maccies beware.
+scriptdir=$(dirname $(readlink -f $0))
+jar=${scriptdir}/target/sebigrader.jar
+ls -lt ${jar}
+
+java -jar ${jar}
