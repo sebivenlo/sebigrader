@@ -11,17 +11,22 @@ import static sebigrader.Settings.SETTINGS;
  */
 public class GradeRecord {
 
-    public static Pattern stickMatcher = Pattern.compile( ".*examproject-EXAM(\\d{3})/(.+?)/.*" );
+    public static Pattern stickDirPattern = Pattern.compile( "^.*?/examproject-EXAM(\\d{3})/(.+?)/.*$" );
+    public static Pattern solutionDirPattern = Pattern.compile( ".*examsolution/(.+?)/.*" );
 
     static GradeRecord forMethod( Path reportPath, String testMethod, String passFail ) {
-
-        Matcher matcher = stickMatcher.matcher( reportPath.toString() );
+        String reportDir = reportPath.toAbsolutePath().toString();
+        Matcher stickM = stickDirPattern.matcher( reportDir );
         int aStick = 0;
         String project = "unknown";
-        int groupCount = matcher.groupCount();
-        if ( matcher.matches() ) {
-            aStick = Integer.parseInt( matcher.group( 1 ) );
-            project= matcher.group(2);
+        int groupCount = stickM.groupCount();
+        if ( stickM.matches() && stickM.groupCount()>= 2 ) {
+            aStick = Integer.parseInt( stickM.group( 1 ) );
+            project = stickM.group( 2 );
+        }
+        Matcher solM = solutionDirPattern.matcher( reportDir );
+        if ( solM.matches() ) {
+            project = solM.group( 1 );
         }
         String event = SETTINGS.get( "event" );
         int task = 0;
@@ -30,13 +35,13 @@ public class GradeRecord {
 
     private final String event;
     private final Integer stick;
-    private final Integer task;
+    private Integer task;
     private final String project;
     private final String testmethod;
     private String passFail;
     private double grade;
 
-    public GradeRecord( String event, int task, int stick, String project,
+    public GradeRecord( String event, int task, Integer stick, String project,
             String testmethod, String passFail, double grade ) {
         this.event = event;
         this.task = task;
@@ -47,7 +52,7 @@ public class GradeRecord {
         this.grade = grade;
     }
 
-    private GradeRecord( String event, int task, int aStick, String project, String testMethod, String passFail ) {
+    private GradeRecord( String event, int task, Integer aStick, String project, String testMethod, String passFail ) {
         this( event, task, aStick, project, testMethod, passFail, 0.0D );
     }
 
@@ -83,7 +88,7 @@ public class GradeRecord {
         return event;
     }
 
-    public int getStick() {
+    public Integer getStick() {
         return stick;
     }
 
@@ -103,8 +108,9 @@ public class GradeRecord {
         return grade;
     }
 
-    public void setGrade( double grade ) {
+    public GradeRecord setGrade( double grade ) {
         this.grade = grade;
+        return this;
     }
 
     public String getPassFail() {
@@ -115,11 +121,14 @@ public class GradeRecord {
 
         return String.format( "%s,%s,%2d,%s,%.1f", event, stick, task, passFail,
                 grade );
-        //return '"' + event + "\",\"" + stick + "\",\"" + task + "\",\"" + grade + '"';
     }
 
     void setPassFail( String passFail ) {
         this.passFail = passFail;
     }
 
+    public GradeRecord setTask( Integer task ) {
+        this.task = task;
+        return this;
+    }
 }

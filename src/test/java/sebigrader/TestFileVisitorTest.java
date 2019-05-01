@@ -22,7 +22,7 @@ import org.junit.Ignore;
  * @author Pieter van den Hombergh (homberghp)
  * {@code pieter.van.den.hombergh@gmail.com}
  */
-public class TestFileVisitorTest {
+public class TestFileVisitorTest extends CollectorsTestBase {
 
     @Test
     public void firstVisit() {
@@ -36,17 +36,6 @@ public class TestFileVisitorTest {
         walk( p, vst );
     }
 
-    private void walk( Path p, TestFileVisitor vst ) {
-        try {
-            Files.walkFileTree( p.toAbsolutePath(), vst );
-
-        } catch ( IOException ex ) {
-            Logger.getLogger( MakeGraderTemplate.class.getName() ).log(
-                    Level.SEVERE, null, ex );
-        }
-
-//        Assert.fail( "method method reached end. You know what to do." );
-    }
 
     //@Ignore( "Think TDD" )
     @Test
@@ -61,11 +50,7 @@ public class TestFileVisitorTest {
 
         TestFileVisitor vst = new TestFileVisitor( ( Path path ) -> true, han );
         walk( p, vst );
-
-//        testMethods.forEach( System.out::println );
-
-        assertEquals( "expect 13", 13, testMethods.size() );
-//        Assert.fail( "method findTests reached end. You know what to do." );
+        assertEquals( "expect 19", 19, testMethods.size() );
     }
 
     //@Ignore( "Think TDD" )
@@ -80,8 +65,6 @@ public class TestFileVisitorTest {
 
         TestFileVisitor vst = new TestFileVisitor( ( Path path ) -> true, han );
         walk( p, vst );
-
-        gradeRecords.forEach( System.out::println );        
         assertEquals( 6, gradeRecords.size() );
 //        Assert.fail( "method findGrades reached end. You know what to do." );
     }

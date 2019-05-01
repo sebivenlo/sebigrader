@@ -71,7 +71,6 @@ class GradingHandler extends BaseHandler {
 
         if ( qName.equalsIgnoreCase( "testcase" ) ) {
             if ( considerations.get( project ).containsKey( testMethod ) ) {
-                System.out.println( "testMethod = " + testMethod );
                 int id = considerations.get( project ).get( testMethod ).getId();
                 GradeRecord gr = getGrades().get( exam ).get( id );
                 if ( text.isEmpty() ) {
@@ -121,7 +120,6 @@ class GradingHandler extends BaseHandler {
     }
 
     private void prepareGradingTable() {
-        System.out.println( "prep for project = " + project);
         Map<String, GraderConsideration> examTaskMap = considerations.get(
                 project );
         Map<Integer, GradeRecord> gr = getGrades().get( exam );

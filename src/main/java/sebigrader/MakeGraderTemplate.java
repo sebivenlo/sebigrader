@@ -59,7 +59,6 @@ class MakeGraderTemplate implements FileVisitor<Path>, Runnable {
         handler = thandler;
         try {
             for ( String project : projectOrder ) {
-//                System.out.println( "work for project '" + project + '\'' );
                 Path projectDir = startingDir.resolveSibling( "examsolution/"
                         + project );
                 Files.walkFileTree( projectDir, this );
@@ -69,11 +68,9 @@ class MakeGraderTemplate implements FileVisitor<Path>, Runnable {
                     Level.SEVERE, null, ex );
         }
         printQuestionInserts( "questions.csv" );
-        System.out.println( "consMap = " + consMap );
         GradingHandler gradingHandler = new GradingHandler( consMap );
         handler = gradingHandler;
         Path sw = Paths.get( resultsDir = SETTINGS.get( "sandboxes" ) );
-        System.out.println( "examining sandboxes = " + sw );
 
         try {
             Files.walkFileTree( sw, this );
@@ -150,14 +147,13 @@ class MakeGraderTemplate implements FileVisitor<Path>, Runnable {
                     .filter( l -> l.startsWith( "fix_task_prefix" ) )
                     .map( s -> s.split( "\\s+" ) )
                     .filter( p -> p.length >= 3 )
-                    .peek( p -> System.out.println( "parts " + Arrays.toString( p ) ) )
+//                    .peek( p -> System.out.println( "parts " + Arrays.toString( p ) ) )
                     .collect( toMap( p -> p[ 2 ], q -> q[ 1 ] ) ); // parts 2= project, part3 is task id.
         } catch ( IOException ex ) {
             Logger.getLogger( MakeGraderTemplate.class.getName() ).log(
                     Level.SEVERE, null, ex );
         }
         for ( String prj : orderMap.values() ) {
-//            System.out.println( "order value = " + value );
             projectOrder.add( prj );
             consMap.put(prj,new LinkedHashMap<>() );
         }

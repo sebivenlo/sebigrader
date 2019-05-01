@@ -61,7 +61,6 @@ public class TestReportHandler extends DefaultHandler {
     public void endElement( String uri, String localName, String qName ) throws
             SAXException {
         super.endElement( uri, localName, qName );
-
        if ( qName.equalsIgnoreCase( "testcase" ) ) {
             if ( skipped ) {
                 passFail = "I";

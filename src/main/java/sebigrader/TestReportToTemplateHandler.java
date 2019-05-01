@@ -37,7 +37,6 @@ class TestReportToTemplateHandler extends BaseHandler {
     public TestReportToTemplateHandler forPath( Path p ) {
         super.forPath( p );
         if ( !considerations.containsKey( project ) ) {
-            System.out.println( "adding project " + project );
             considerations.put( project, new TreeMap<>() );
         }
         return this;

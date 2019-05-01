@@ -34,9 +34,7 @@ public class BaseHandler extends DefaultHandler {
 
     private void setFromPath( Path path ) {
         String[] fnParts = path.toAbsolutePath().normalize().toString().split( "/" );
-        System.out.println( "fnParts=" + Arrays.toString( fnParts ) );
         Pattern examdir = SETTINGS.EXAM_DIR_PATTERN;
-        System.out.println( "examdir = " + examdir );
         for ( int i = 0; i < fnParts.length; i++ ) {
             if ( i > 0 ) {
                 Matcher matcher = examdir.matcher( fnParts[ i ] );
@@ -47,7 +45,6 @@ public class BaseHandler extends DefaultHandler {
                         project = fnParts[ i + 1 ];
                     }
                     exam = Integer.parseInt( matcher.group( 1 ) );
-                    System.out.println( "exam = " + exam + " correcting project = " + project );
                     break;
                 }
             }

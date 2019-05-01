@@ -14,7 +14,7 @@ public class GradeRecordTest {
     @Test
     public void parsePathSolution() {
 
-        Path reportPath = Paths.get( "", "TEST-pack-PersonTest.xml" );
+        Path reportPath = Paths.get( "examsolution/admin/surefire-reports", "TEST-pack.PersonTest.xml" );
         String passFail = "P";
         String testMethod = "aTest";
 
@@ -22,6 +22,7 @@ public class GradeRecordTest {
         assertEquals( "PRC2-2018-07-02", gr.getEvent() );
         assertEquals( passFail, gr.getPassFail() );
         assertEquals( testMethod, gr.getTestmethod() );
+        assertEquals( "admin", gr.getProject() );
 
     }
 
@@ -31,13 +32,13 @@ public class GradeRecordTest {
 
         String project = "admin";
         Path reportPath = Paths.get( "sw/examproject-EXAM123/" + project + "/surefire-reports/",
-                 "TEST-pack-PersonTest.xml" );
+                "TEST-pack.PersonTest.xml" );
         String passFail = "F";
         String testMethod = "aTest";
 
         GradeRecord gr = GradeRecord.forMethod( reportPath, testMethod, passFail );
         assertEquals( "PRC2-2018-07-02", gr.getEvent() );
-        assertEquals( 123, gr.getStick() );
+        assertEquals( Integer.valueOf( 123 ), gr.getStick() );
         assertEquals( passFail, gr.getPassFail() );
         assertEquals( testMethod, gr.getTestmethod() );
         assertEquals( project, gr.getProject() );
