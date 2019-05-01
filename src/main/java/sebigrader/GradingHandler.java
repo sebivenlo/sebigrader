@@ -127,7 +127,7 @@ class GradingHandler extends BaseHandler {
         Map<Integer, GradeRecord> gr = getGrades().get( exam );
         if ( gr == null ) {
             gr = new TreeMap<>();
-            getGrades().put( exam, gr );
+            getGrades().put( exam.toString(), gr );
         }
 
         for ( GraderConsideration value : examTaskMap.values() ) {

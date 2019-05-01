@@ -1,6 +1,9 @@
 package sebigrader;
 
 import java.nio.file.Path;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import static sebigrader.Settings.SETTINGS;
 
 /**
  *
@@ -8,23 +11,31 @@ import java.nio.file.Path;
  */
 public class GradeRecord {
 
+    public static Pattern stickMatcher = Pattern.compile( ".*examproject-EXAM(\\d{3}).*" );
+
     static GradeRecord forMethod( Path reportPath, String testMethod, String passFail ) {
-        String aStick = "999";
-        String event = "now";
+
+        Matcher matcher = stickMatcher.matcher( reportPath.toString() );
+        int aStick = 0;
+        System.out.println( "matcher = " + matcher );
+        if ( matcher.matches() ) {
+            aStick = Integer.parseInt( matcher.group( 1 ) );
+        }
+        String event = SETTINGS.get( "event" );
         int task = 0;
         String project = "test";
         return new GradeRecord( event, task, aStick, project, testMethod, passFail );
     }
 
     private final String event;
-    private final String stick;
+    private final int stick;
     private final int task;
     private final String project;
     private final String testmethod;
     private String passFail;
     private double grade;
 
-    public GradeRecord( String event, int task, String stick, String project,
+    public GradeRecord( String event, int task, int stick, String project,
             String testmethod, String passFail, double grade ) {
         this.event = event;
         this.task = task;
@@ -35,7 +46,7 @@ public class GradeRecord {
         this.grade = grade;
     }
 
-    private GradeRecord( String event, int task, String aStick, String project, String testMethod, String passFail ) {
+    private GradeRecord( String event, int task, int aStick, String project, String testMethod, String passFail ) {
         this( event, task, aStick, project, testMethod, passFail, 0.0D );
     }
 
@@ -71,7 +82,7 @@ public class GradeRecord {
         return event;
     }
 
-    public String getStick() {
+    public int getStick() {
         return stick;
     }
 
