@@ -41,7 +41,6 @@ enum Settings {
         Properties result = new Properties();
         // first attempt to get a normal file from the well known location
         try ( InputStream in = new FileInputStream( new File( PROP_FILENAME ) ) ) {
-            System.out.println( "inputStream filename = " + PROP_FILENAME );
             result.load( in );
             result.forEach( ( a, b ) -> System.out.println( a + " = " + b ) );
         } catch ( FileNotFoundException ignored ) {
