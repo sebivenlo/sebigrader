@@ -2,14 +2,8 @@ package sebigrader;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 
 /**
  *
@@ -17,12 +11,6 @@ import org.junit.Ignore;
  */
 public class GradeRecordTest {
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
-//    @Ignore
     @Test
     public void parsePathSolution() {
 
@@ -35,7 +23,6 @@ public class GradeRecordTest {
         assertEquals( passFail, gr.getPassFail() );
         assertEquals( testMethod, gr.getTestmethod() );
 
-//        Assert.fail( "method parsePathSolution reached end. You know what to do." );
     }
 
 //    @Ignore( "Thick TDD" )
@@ -55,7 +42,5 @@ public class GradeRecordTest {
         assertEquals( testMethod, gr.getTestmethod() );
         assertEquals( project, gr.getProject() );
 
-//        Assert.fail( "method parseCandidate reached end. You know what to do." );
     }
-
 }

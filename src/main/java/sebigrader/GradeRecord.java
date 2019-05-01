@@ -18,9 +18,7 @@ public class GradeRecord {
         Matcher matcher = stickMatcher.matcher( reportPath.toString() );
         int aStick = 0;
         String project = "unknown";
-        System.out.println( "matcher = " + matcher );
         int groupCount = matcher.groupCount();
-        System.out.println( "groupCount = " + groupCount );
         if ( matcher.matches() ) {
             aStick = Integer.parseInt( matcher.group( 1 ) );
             project= matcher.group(2);
