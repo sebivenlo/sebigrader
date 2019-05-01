@@ -54,7 +54,7 @@ public class TestFileVisitorTest {
 
         final Set<String> testMethods = new HashSet<>();
 
-        String d = "testreports";
+        String d = "testreports/sw";
         Path p = Paths.get( d );//, "TEST-administration.PersonTest.xml" );
         Consumer<GradeRecord> cons = gr -> testMethods.add( gr.getTestmethod() );
         TestReportHandler han = new TestReportHandler( p, cons );
@@ -64,7 +64,7 @@ public class TestFileVisitorTest {
 
 //        testMethods.forEach( System.out::println );
 
-        assertEquals( "expect 19", 19, testMethods.size() );
+        assertEquals( "expect 13", 13, testMethods.size() );
 //        Assert.fail( "method findTests reached end. You know what to do." );
     }
 
@@ -73,7 +73,7 @@ public class TestFileVisitorTest {
     public void findGrades() {
 
         final List<GradeRecord> gradeRecords = new ArrayList<>();
-        String d = "testreports";
+        String d = "testreports/examsolution";
         Path p = Paths.get( d );//, "TEST-administration.PersonTest.xml" );
         Consumer<GradeRecord> cons = g -> gradeRecords.add( g );
         TestReportHandler han = new TestReportHandler( p, cons );
@@ -82,7 +82,7 @@ public class TestFileVisitorTest {
         walk( p, vst );
 
         gradeRecords.forEach( System.out::println );        
-        assertEquals( 19, gradeRecords.size() );
+        assertEquals( 6, gradeRecords.size() );
 //        Assert.fail( "method findGrades reached end. You know what to do." );
     }
 }
