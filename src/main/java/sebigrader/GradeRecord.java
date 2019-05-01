@@ -11,25 +11,28 @@ import static sebigrader.Settings.SETTINGS;
  */
 public class GradeRecord {
 
-    public static Pattern stickMatcher = Pattern.compile( ".*examproject-EXAM(\\d{3}).*" );
+    public static Pattern stickMatcher = Pattern.compile( ".*examproject-EXAM(\\d{3})/(.+?)/.*" );
 
     static GradeRecord forMethod( Path reportPath, String testMethod, String passFail ) {
 
         Matcher matcher = stickMatcher.matcher( reportPath.toString() );
         int aStick = 0;
+        String project = "unknown";
         System.out.println( "matcher = " + matcher );
+        int groupCount = matcher.groupCount();
+        System.out.println( "groupCount = " + groupCount );
         if ( matcher.matches() ) {
             aStick = Integer.parseInt( matcher.group( 1 ) );
+            project= matcher.group(2);
         }
         String event = SETTINGS.get( "event" );
         int task = 0;
-        String project = "test";
         return new GradeRecord( event, task, aStick, project, testMethod, passFail );
     }
 
     private final String event;
-    private final int stick;
-    private final int task;
+    private final Integer stick;
+    private final Integer task;
     private final String project;
     private final String testmethod;
     private String passFail;

@@ -42,7 +42,9 @@ public class GradeRecordTest {
     @Test
     public void parseCandidate() {
 
-        Path reportPath = Paths.get( "sw/examproject-EXAM123/admin/surefire-reports/", "TEST-pack-PersonTest.xml" );
+        String project = "admin";
+        Path reportPath = Paths.get( "sw/examproject-EXAM123/" + project + "/surefire-reports/",
+                 "TEST-pack-PersonTest.xml" );
         String passFail = "F";
         String testMethod = "aTest";
 
@@ -51,6 +53,7 @@ public class GradeRecordTest {
         assertEquals( 123, gr.getStick() );
         assertEquals( passFail, gr.getPassFail() );
         assertEquals( testMethod, gr.getTestmethod() );
+        assertEquals( project, gr.getProject() );
 
 //        Assert.fail( "method parseCandidate reached end. You know what to do." );
     }
