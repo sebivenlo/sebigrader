@@ -30,7 +30,7 @@ public class Main {
 
     public void run() {
         TemplateCollector tcol = createTemplate();
-        String d = "testreports/sw";
+        String d = SETTINGS.get( "sandboxes" );
         Path p = Paths.get( d );
         GradeCollector gcol = new GradeCollector( tcol );
 
@@ -42,7 +42,7 @@ public class Main {
     }
 
     TemplateCollector createTemplate() {
-        String d = "testreports/examsolution";
+        String d = SETTINGS.get( "solutiondir" );
         Path p = Paths.get( d ); //, "TEST-administration.PersonTest.xml" );
         TemplateCollector cons = new TemplateCollector();
         TestReportHandler han = new TestReportHandler( p, cons );
