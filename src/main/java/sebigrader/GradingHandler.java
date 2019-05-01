@@ -78,7 +78,6 @@ class GradingHandler extends BaseHandler {
                     passFail = "P";
                     gr.setGrade( 10.0D );
                 } else {
-//                    System.out.println( "text = " + text );
                     if ( !failure.toString().isEmpty() ) {
                         passFail = "F";
                     } else if ( !error.toString().isEmpty() ) {

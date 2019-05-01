@@ -30,7 +30,7 @@ public class SimpleFileVisitorTest {
         Consumer<GradeRecord> cons = System.out::println;
         TestReportHandler han = new TestReportHandler( p, cons );
         
-        TestFileVisitor vst = new TestFileVisitor( ( Path path ) -> true, cons, han );
+        TestFileVisitor vst = new TestFileVisitor( ( Path path ) -> true, han );
         try {
             Path walkFileTree = Files.walkFileTree( p.toAbsolutePath(), vst);
 
