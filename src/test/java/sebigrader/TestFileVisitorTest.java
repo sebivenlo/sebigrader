@@ -24,19 +24,6 @@ import org.junit.Ignore;
  */
 public class TestFileVisitorTest extends CollectorsTestBase {
 
-    @Test
-    public void firstVisit() {
-        String d = "testreports";
-        Path p = Paths.get( d );//, "TEST-administration.PersonTest.xml" );
-        Consumer<GradeRecord> cons = System.out::println;
-        TestReportHandler han = new TestReportHandler( p, cons );
-
-        TestFileVisitor vst = new TestFileVisitor( ( Path path ) -> true, han );
-
-        walk( p, vst );
-    }
-
-
     //@Ignore( "Think TDD" )
     @Test
     public void findTests() {

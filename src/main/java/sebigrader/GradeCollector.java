@@ -21,10 +21,30 @@ public class GradeCollector implements Consumer<GradeRecord> {
     @Override
     public void accept( GradeRecord t ) {
         template.lookupTaskId( t ).ifPresent( task -> {
-            double grade = t.getPassFail().equals( "P" ) ? 10.0D : 1.0D;
-            t.setTask( task ).setGrade( grade );
+            gradeTask( t, task );
             results.add( t );
         } );
+    }
+
+    void gradeTask( GradeRecord t, Integer task ) {
+        double grade = 0.0d;
+        switch ( t.getPassFail() ) {
+            case "P":
+                grade = 10.0D;
+                break;
+            case "F":
+                grade = 1.5D;
+                break;
+            default:
+            case "I":
+                grade = 0.0D;
+                break;
+            case "E":
+                grade = 1.0D;
+                break;
+
+        }
+        t.setTask( task ).setGrade( grade );
     }
 
     public List<GradeRecord> getResults() {

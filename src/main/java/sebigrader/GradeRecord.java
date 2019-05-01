@@ -19,8 +19,7 @@ public class GradeRecord {
         Matcher stickM = stickDirPattern.matcher( reportDir );
         int aStick = 0;
         String project = "unknown";
-        int groupCount = stickM.groupCount();
-        if ( stickM.matches() && stickM.groupCount()>= 2 ) {
+        if ( stickM.matches() && stickM.groupCount()>= 2 ) { // wierd number
             aStick = Integer.parseInt( stickM.group( 1 ) );
             project = stickM.group( 2 );
         }
