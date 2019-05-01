@@ -17,11 +17,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import static java.util.Comparator.comparing;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import static java.util.logging.Level.CONFIG;
 import java.util.logging.Logger;
@@ -67,9 +69,12 @@ class MakeGraderTemplate implements FileVisitor<Path>, Runnable {
                     Level.SEVERE, null, ex );
         }
         printQuestionInserts( "questions.csv" );
+        System.out.println( "consMap = " + consMap );
         GradingHandler gradingHandler = new GradingHandler( consMap );
         handler = gradingHandler;
-        Path sw = Paths.get( resultsDir=SETTINGS.get( "sandboxes") );
+        Path sw = Paths.get( resultsDir = SETTINGS.get( "sandboxes" ) );
+        System.out.println( "examining sandboxes = " + sw );
+
         try {
             Files.walkFileTree( sw, this );
         } catch ( IOException ex ) {
@@ -99,7 +104,7 @@ class MakeGraderTemplate implements FileVisitor<Path>, Runnable {
     public MakeGraderTemplate( Path startingDir, PrintStream out ) {
         this.out = out;
         this.startingDir = startingDir;
-        consMap = new LinkedHashMap<>();
+        consMap = new ConcurrentHashMap<>();
 
     }
 
@@ -145,27 +150,19 @@ class MakeGraderTemplate implements FileVisitor<Path>, Runnable {
                     .filter( l -> l.startsWith( "fix_task_prefix" ) )
                     .map( s -> s.split( "\\s+" ) )
                     .filter( p -> p.length >= 3 )
-                    .peek( p -> System.out.println( "p" + Arrays.toString( p ) ) ).
-                    collect( toMap( p -> p[ 2 ], q -> q[ 1 ] ) );
+                    .peek( p -> System.out.println( "parts " + Arrays.toString( p ) ) )
+                    .collect( toMap( p -> p[ 2 ], q -> q[ 1 ] ) ); // parts 2= project, part3 is task id.
         } catch ( IOException ex ) {
             Logger.getLogger( MakeGraderTemplate.class.getName() ).log(
                     Level.SEVERE, null, ex );
         }
-        for ( String value : orderMap.values() ) {
-            System.out.println( "order value = " + value );
-            projectOrder.add( value );
+        for ( String prj : orderMap.values() ) {
+//            System.out.println( "order value = " + value );
+            projectOrder.add( prj );
+            consMap.put(prj,new LinkedHashMap<>() );
         }
-    }
-
-    public static void main( String[] args ) throws IOException {
-
-        try ( PrintStream out = new PrintStream( "correction.xml" ); ) {
-            Path startingDir = Paths.get( SETTINGS.get( resultsDir ) );
-            //TestReportVisitor visitor= new TestReportVisitor(new TestReportHandler());
-            MakeGraderTemplate grader
-                    = new MakeGraderTemplate( startingDir, out );
-            grader.run();
-        }
+        
+        
     }
 
     private void doFile( Path p ) {
@@ -175,7 +172,7 @@ class MakeGraderTemplate implements FileVisitor<Path>, Runnable {
             saxParser.parse( p.toFile(), handler );
 
         } catch ( ParserConfigurationException | SAXException | IOException e ) {
-            Logger.getGlobal().fine(e.getMessage());
+            Logger.getGlobal().fine( e.getMessage() );
         }
     }
 
@@ -184,16 +181,16 @@ class MakeGraderTemplate implements FileVisitor<Path>, Runnable {
     @Override
     public FileVisitResult preVisitDirectory( Path dir,
             BasicFileAttributes attrs ) throws IOException {
-        System.out.println( "pre visiting dir = " + dir );
+//        System.out.println( "pre visiting dir = " + dir );
         String dirToString = dir.toAbsolutePath().normalize().toString();
         String ending = SETTINGS.get( "results_dir_ending" );
-        System.out.println( "ending = " + ending );
+//        System.out.println( "ending = " + ending );
         if ( dir.toString().endsWith( ending ) ) {
-            System.err.println( "found build at  = " + dir );
+            // System.err.println( "found build at  = " + dir );
             handler.forPath( dir );
         }
         if ( SETTINGS.SUBTREES_TO_SKIP.matcher( dirToString ).matches() ) {
-            System.err.println( "skipping path " + dirToString );
+            // System.err.println( "skipping path " + dirToString );
             return FileVisitResult.SKIP_SUBTREE;
         } else {
             currentDirectory = dir;
@@ -205,14 +202,14 @@ class MakeGraderTemplate implements FileVisitor<Path>, Runnable {
     public FileVisitResult visitFile( Path file, BasicFileAttributes attrs )
             throws IOException {
         String fileName = file.getFileName().toString();
-        System.out.println( "fileName = " + fileName );
+//        System.out.println( "fileName = " + fileName );
         if ( SETTINGS.TEST_RESULT_FILE_PATTERN.matcher( fileName ).matches() ) {
-            System.err.println( "filename matches: " + fileName + " pattern /" + SETTINGS.TEST_RESULT_FILE_PATTERN.pattern() + '/' );
-            
+//            System.err.println( "filename matches: " + fileName + " pattern /" + SETTINGS.TEST_RESULT_FILE_PATTERN.pattern() + '/' );
+
             System.err.println( "visit  " + file.toAbsolutePath() );
             doFile( file );
         } else {
-            System.err.println( "filename does not match " + fileName + " pattern /" + SETTINGS.TEST_RESULT_FILE_PATTERN.pattern() + '/' );
+            //          System.err.println( "filename does not match " + fileName + " pattern /" + SETTINGS.TEST_RESULT_FILE_PATTERN.pattern() + '/' );
         }
         return CONTINUE;
     }

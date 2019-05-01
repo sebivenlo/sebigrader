@@ -37,6 +37,7 @@ class TestReportToTemplateHandler extends BaseHandler {
     public TestReportToTemplateHandler forPath( Path p ) {
         super.forPath( p );
         if ( !considerations.containsKey( project ) ) {
+            System.out.println( "adding project " + project );
             considerations.put( project, new TreeMap<>() );
         }
         return this;
@@ -67,7 +68,7 @@ class TestReportToTemplateHandler extends BaseHandler {
     public void endElement( String uri, String localName, String qName ) throws SAXException {
         super.endElement( uri, localName, qName );
         if ( qName.equalsIgnoreCase( "testcase" ) ) {
-            GraderConsideration gc = new GraderConsideration( event,project,testMethod );
+            GraderConsideration gc = new GraderConsideration( event, project, testMethod );
             putConsideration( gc );
             testMethod = null;
             text = "";

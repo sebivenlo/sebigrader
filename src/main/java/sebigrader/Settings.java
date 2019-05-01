@@ -21,6 +21,7 @@ enum Settings {
     final Pattern SUBTREES_TO_SKIP ;
     final Pattern TEST_RESULT_FILE_PATTERN ;
     final String BUILD_DIR;
+    final Pattern EXAM_DIR_PATTERN;
 
     final String RESULTS_DIR_ENDING;
     private static final String PROP_FILENAME = "sebigrader.properties";
@@ -32,6 +33,7 @@ enum Settings {
         String testResultFilePattern = settings.getProperty( "results_file_pattern", "^.*TestSuites?\\.xml$" );
         TEST_RESULT_FILE_PATTERN = Pattern.compile( testResultFilePattern );
         RESULTS_DIR_ENDING = settings.getProperty( "results_dir_ending", "results" );
+        EXAM_DIR_PATTERN = Pattern.compile( settings.getProperty("exam_dir_pattern","examproject-EXAM(\\d{3})" ));
         BUILD_DIR=settings.getProperty( "build_dir", "build" );
     }
 

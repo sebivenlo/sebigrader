@@ -13,8 +13,8 @@ import org.xml.sax.SAXException;
  */
 class GradingHandler extends BaseHandler {
 
-    Map<String, Map<Integer, GradeRecord>> grades;
-   private String testMethod = null;
+    private final Map<String, Map<Integer, GradeRecord>> grades;
+    private String testMethod = null;
     private String text = "";
 
     public GradingHandler( Map<String, Map<String, GraderConsideration>> cons ) {
@@ -29,7 +29,9 @@ class GradingHandler extends BaseHandler {
     @Override
     public GradingHandler forPath( Path p ) {
         super.forPath( p );
-        prepareGradingTable();
+        if ( exam != null ) {
+            prepareGradingTable();
+        }
         return this;
     }
 
@@ -63,16 +65,20 @@ class GradingHandler extends BaseHandler {
     public void endElement( String uri, String localName, String qName ) throws
             SAXException {
         super.endElement( uri, localName, qName );
-        if ( qName.equalsIgnoreCase( "testcase" ) ) {
+        if ( project == null ) {
+            return;
+        }
 
+        if ( qName.equalsIgnoreCase( "testcase" ) ) {
             if ( considerations.get( project ).containsKey( testMethod ) ) {
+                System.out.println( "testMethod = " + testMethod );
                 int id = considerations.get( project ).get( testMethod ).getId();
-                GradeRecord gr = grades.get( exam ).get( id );
+                GradeRecord gr = getGrades().get( exam ).get( id );
                 if ( text.isEmpty() ) {
                     passFail = "P";
                     gr.setGrade( 10.0D );
                 } else {
-                    System.out.println( "text = " + text );
+//                    System.out.println( "text = " + text );
                     if ( !failure.toString().isEmpty() ) {
                         passFail = "F";
                     } else if ( !error.toString().isEmpty() ) {
@@ -80,7 +86,7 @@ class GradingHandler extends BaseHandler {
                     }
                     gr.setGrade( 1.5D );
                 }
-                gr.setPassFail(passFail);
+                gr.setPassFail( passFail );
                 System.err.println( gr );
             }
             testMethod = null;
@@ -116,14 +122,14 @@ class GradingHandler extends BaseHandler {
     }
 
     private void prepareGradingTable() {
+        System.out.println( "prep for project = " + project);
         Map<String, GraderConsideration> examTaskMap = considerations.get(
                 project );
-        Map<Integer, GradeRecord> gr = grades.get( exam );
+        Map<Integer, GradeRecord> gr = getGrades().get( exam );
         if ( gr == null ) {
             gr = new TreeMap<>();
-            grades.put( exam, gr );
+            getGrades().put( exam, gr );
         }
-
 
         for ( GraderConsideration value : examTaskMap.values() ) {
             int id = value.getId();

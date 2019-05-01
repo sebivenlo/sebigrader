@@ -1,15 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sebigrader;
+
+import java.nio.file.Path;
 
 /**
  *
  * @author Pieter van den Hombergh (879417) {@code p.vandenhombergh@fontys.nl}
  */
 public class GradeRecord {
+
+    static GradeRecord forMethod( Path reportPath, String testMethod, String passFail ) {
+        String aStick = "999";
+        String event = "now";
+        int task = 0;
+        String project = "test";
+        return new GradeRecord( event, task, aStick, project, testMethod, passFail );
+    }
 
     private final String event;
     private final String stick;
@@ -23,11 +28,15 @@ public class GradeRecord {
             String testmethod, String passFail, double grade ) {
         this.event = event;
         this.task = task;
-        this.stick = stick.replace( "examproject-EXAM", "");
+        this.stick = stick;//.replace( "examproject-EXAM", "");
         this.project = project;
         this.testmethod = testmethod;
         this.passFail = passFail;
         this.grade = grade;
+    }
+
+    private GradeRecord( String event, int task, String aStick, String project, String testMethod, String passFail ) {
+        this( event, task, aStick, project, testMethod, passFail, 0.0D );
     }
 
     @Override
@@ -36,8 +45,9 @@ public class GradeRecord {
         String normal = "\033[m";
         String pass = "\033[1;37;42m";
         String error = "\033[1;37;41m";
+        String ignored = "\033[1;30;47m";
         String fail = "\033[1;37;43m";
-        switch (passFail) {
+        switch ( passFail ) {
             default:
             case "P":
                 style = pass;
@@ -47,6 +57,9 @@ public class GradeRecord {
                 break;
             case "E":
                 style = error;
+                break;
+            case "I":
+                style = ignored;
                 break;
 
         }
@@ -88,7 +101,7 @@ public class GradeRecord {
 
     public String getCSVRecord() {
 
-        return String.format("%s,%s,%2d,%s,%.1f", event, stick, task, passFail,
+        return String.format( "%s,%s,%2d,%s,%.1f", event, stick, task, passFail,
                 grade );
         //return '"' + event + "\",\"" + stick + "\",\"" + task + "\",\"" + grade + '"';
     }
