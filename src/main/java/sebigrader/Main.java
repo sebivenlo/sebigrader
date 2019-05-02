@@ -1,13 +1,11 @@
 package sebigrader;
 
 import java.io.IOException;
-import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static sebigrader.MakeGraderTemplate.resultsDir;
 import static sebigrader.Settings.SETTINGS;
 
 /**
@@ -17,14 +15,6 @@ import static sebigrader.Settings.SETTINGS;
 public class Main {
 
     public static void main( String[] args ) throws IOException {
-
-//        try ( PrintStream out = new PrintStream( "correction.xml" ); ) {
-//            Path startingDir = Paths.get( SETTINGS.get( resultsDir ) );
-//            //TestReportVisitor visitor= new TestReportVisitor(new TestReportHandler());
-//            MakeGraderTemplate grader
-//                    = new MakeGraderTemplate( startingDir, out );
-//            grader.run();
-//        }
         new Main().run();
     }
 
@@ -55,7 +45,7 @@ public class Main {
         try {
             Files.walkFileTree( p.toAbsolutePath(), vst );
         } catch ( IOException ex ) {
-            Logger.getLogger( MakeGraderTemplate.class.getName() ).log( Level.SEVERE, null, ex );
+            Logger.getLogger( Main.class.getName() ).log( Level.SEVERE, null, ex );
         }
     }
 

@@ -27,7 +27,7 @@ class CollectorsTestBase {
         try {
             Files.walkFileTree( p.toAbsolutePath(), vst );
         } catch ( IOException ex ) {
-            Logger.getLogger( MakeGraderTemplate.class.getName() ).log( Level.SEVERE, null, ex );
+            Logger.getLogger( getClass().getName() ).log( Level.SEVERE, null, ex );
         }
         //        Assert.fail( "method method reached end. You know what to do." );
     }

@@ -44,7 +44,7 @@ enum Settings {
             result.load( in );
             result.forEach( ( a, b ) -> System.out.println( a + " = " + b ) );
         } catch ( FileNotFoundException ignored ) {
-            Logger.getLogger( MakeGraderTemplate.class.getName() ).log( Level.INFO, "properties file " + PROP_FILENAME + " not found" );
+            Logger.getLogger( Settings.class.getName() ).log( Level.INFO, "properties file " + PROP_FILENAME + " not found" );
         } catch ( IOException ex ) {
             Logger.getLogger(Settings.class.getName() ).log( Level.SEVERE, null, ex );
         }
