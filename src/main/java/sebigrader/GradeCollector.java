@@ -33,6 +33,4 @@ public class GradeCollector implements Consumer<TestResult> {
     public Map<GradeKey, Map<String, String>> getResults() {
         return results;
     }
-    
-    
 }
