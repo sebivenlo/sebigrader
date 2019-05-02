@@ -19,7 +19,7 @@ public class GradeRecord {
         Matcher stickM = stickDirPattern.matcher( reportDir );
         int aStick = 0;
         String project = "unknown";
-        if ( stickM.matches() && stickM.groupCount()>= 2 ) { // wierd number
+        if ( stickM.matches() && stickM.groupCount() >= 2 ) { // wierd number
             aStick = Integer.parseInt( stickM.group( 1 ) );
             project = stickM.group( 2 );
         }
@@ -29,30 +29,34 @@ public class GradeRecord {
         }
         String event = SETTINGS.get( "event" );
         int task = 0;
-        return new GradeRecord( event, task, aStick, project, testMethod, passFail );
+        return new GradeRecord( event, task, aStick, Aspect.of(project, testMethod), passFail );
     }
 
     private final String event;
     private final Integer stick;
-    private Integer task;
-    private final String project;
-    private final String testmethod;
+    private final Aspect aspect;
     private String passFail;
     private double grade;
 
-    public GradeRecord( String event, int task, Integer stick, String project,
+    private GradeRecord( String event, int task, Integer stick, String project,
             String testmethod, String passFail, double grade ) {
         this.event = event;
-        this.task = task;
         this.stick = stick;//.replace( "examproject-EXAM", "");
-        this.project = project;
-        this.testmethod = testmethod;
+        aspect = Aspect.of( project, testmethod );
         this.passFail = passFail;
         this.grade = grade;
     }
 
-    private GradeRecord( String event, int task, Integer aStick, String project, String testMethod, String passFail ) {
-        this( event, task, aStick, project, testMethod, passFail, 0.0D );
+    public GradeRecord( String event, int task, Integer stick, Aspect aspect, String passFail, double grade ) {
+        this.event = event;
+        this.stick = stick;//.replace( "examproject-EXAM", "");
+        this.aspect = aspect;
+        this.passFail = passFail;
+        this.grade = grade;
+    }
+
+    private GradeRecord( String event, int task, Integer aStick, Aspect aspect, String passFail ) {
+        this( event, task, aStick, aspect, passFail, 0.0D );
     }
 
     @Override
@@ -79,8 +83,8 @@ public class GradeRecord {
                 break;
 
         }
-        return style + event + "," + stick + "," + task + "," + project + ","
-                + testmethod + "," + passFail + "," + grade + normal;
+        return style + event + "," + stick + "," + aspect.task + "," + aspect.project + ","
+                + aspect.testMethod + "," + passFail + "," + grade + normal;
     }
 
     public String getEvent() {
@@ -92,15 +96,15 @@ public class GradeRecord {
     }
 
     public int getTask() {
-        return task;
+        return aspect.task;
     }
 
     public String getProject() {
-        return project;
+        return aspect.project;
     }
 
     public String getTestmethod() {
-        return testmethod;
+        return aspect.testMethod;
     }
 
     public double getGrade() {
@@ -118,7 +122,7 @@ public class GradeRecord {
 
     public String getCSVRecord() {
 
-        return String.format( "%s,%s,%2d,%s,%.1f", event, stick, task, passFail,
+        return String.format( "%s,%s,%2d,%s,%.1f", event, stick, aspect.task, passFail,
                 grade );
     }
 
@@ -126,8 +130,8 @@ public class GradeRecord {
         this.passFail = passFail;
     }
 
-    public GradeRecord setTask( Integer task ) {
-        this.task = task;
-        return this;
-    }
+//    public GradeRecord setTask( Integer task ) {
+//        this.task = task;
+//        return this;
+//    }
 }

@@ -44,7 +44,7 @@ public class GradeCollector implements Consumer<GradeRecord> {
                 break;
 
         }
-        t.setTask( task ).setGrade( grade );
+        t.setGrade( grade );
     }
 
     public List<GradeRecord> getResults() {

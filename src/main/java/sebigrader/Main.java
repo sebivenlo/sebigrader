@@ -1,9 +1,15 @@
 package sebigrader;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import static java.util.Comparator.comparing;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static sebigrader.Settings.SETTINGS;
@@ -27,8 +33,33 @@ public class Main {
         TestReportHandler han = new TestReportHandler( p, gcol );
         TestFileVisitor vst = new TestFileVisitor( ( Path path ) -> true, han );
         walk( p, vst );
-        gcol.getResults().forEach( System.out::println );
+        List<GradeRecord> results = gcol.getResults();
 
+//        PrintStream sout = System.out;
+        printTemplate( tcol, System.out );
+
+        try (
+                PrintStream out = new PrintStream( new File( "scores.csv" ) ); ) {
+
+            out.println( "event,stick_nr,task,passFail,grade" );
+            results.stream()
+                    .map( GradeRecord::getCSVRecord ).forEach( out::println );
+
+        } catch ( FileNotFoundException ex ) {
+            Logger.getLogger( Main.class.getName() ).log( Level.SEVERE, null, ex );
+        }
+
+        results.forEach( System.out::println );
+
+    }
+
+    final String q="\"";
+    void printTemplate( TemplateCollector tcol, PrintStream sout ) {
+        tcol.lookupMap().entrySet().stream()
+                .sorted( comparing( Map.Entry::getValue ) )
+                .forEach( e -> {
+                    sout.println( q+" "+e.getValue() +q+ ","+q + e.getKey().replace( ":", q+","+q)+q );
+                } );
     }
 
     TemplateCollector createTemplate() {
