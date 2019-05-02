@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import static java.util.Comparator.comparing;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static sebigrader.Settings.SETTINGS;
@@ -33,7 +34,7 @@ public class Main {
         TestReportHandler han = new TestReportHandler( p, gcol );
         TestFileVisitor vst = new TestFileVisitor( ( Path path ) -> true, han );
         walk( p, vst );
-        List<GradeRecord> results = gcol.getResults();
+        Map<GradeKey, Map<String, String>> results = gcol.getResults();
 
 //        PrintStream sout = System.out;
         printTemplate( tcol, System.out );
@@ -41,24 +42,32 @@ public class Main {
         try (
                 PrintStream out = new PrintStream( new File( "scores.csv" ) ); ) {
 
-            out.println( "event,stick_nr,task,passFail,grade" );
-            results.stream()
-                    .map( GradeRecord::getCSVRecord ).forEach( out::println );
+            printScores( out, results );
 
         } catch ( FileNotFoundException ex ) {
             Logger.getLogger( Main.class.getName() ).log( Level.SEVERE, null, ex );
         }
 
-        results.forEach( System.out::println );
-
+//        results.forEach( System.out::println );
+        printScores( System.out, results );
     }
 
-    final String q="\"";
+    void printScores( final PrintStream out, Map<GradeKey, Map<String, String>> results ) {
+        out.println( "event,stick_nr,task,passFail,grade" );
+        results.entrySet()
+                .stream()
+//                .sorted(Entry::comparingByKey)
+                .map( e -> e.getKey() + ";" + e.getValue() )
+                .forEach( out::println );
+    }
+
+    final String q = "\"";
+
     void printTemplate( TemplateCollector tcol, PrintStream sout ) {
         tcol.lookupMap().entrySet().stream()
                 .sorted( comparing( Map.Entry::getValue ) )
                 .forEach( e -> {
-                    sout.println( q+" "+e.getValue() +q+ ","+q + e.getKey().replace( ":", q+","+q)+q );
+                    sout.println( q + " " + e.getValue() + q + "," + q + e.getKey().toString().replace( ":", q + "," + q ) + q );
                 } );
     }
 

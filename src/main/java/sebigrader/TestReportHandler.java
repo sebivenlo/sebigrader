@@ -14,11 +14,11 @@ import org.xml.sax.helpers.DefaultHandler;
 public class TestReportHandler extends DefaultHandler {
 
     private Path reportPath;
-    private final Consumer<GradeRecord> resultCollector;
+    private final Consumer<TestResult> resultCollector;
     private String testMethod = "?";
     private StringBuilder text = new StringBuilder();
 
-    public TestReportHandler( Path reportPath, Consumer<GradeRecord> resultCollector ) {
+    public TestReportHandler( Path reportPath, Consumer<TestResult> resultCollector ) {
         this.reportPath = reportPath;
         this.resultCollector = resultCollector;
     }
@@ -73,8 +73,8 @@ public class TestReportHandler extends DefaultHandler {
                     passFail = "E";
                 }
             }
-            GradeRecord gr = GradeRecord.forMethod( this.reportPath, testMethod, passFail );
-            this.resultCollector.accept( gr );
+            TestResult tr = TestResult.forMethod( this.reportPath, testMethod, passFail );
+            this.resultCollector.accept( tr );
             testMethod = null;
         } else if ( qName.equals( "failure" ) ) {
             failure.append( text );

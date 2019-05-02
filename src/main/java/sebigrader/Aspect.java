@@ -76,6 +76,11 @@ class Aspect {
     public String getTestMethod() {
         return testMethod;
     }
+
+    @Override
+    public String toString() {
+        return "Aspect{" + "task=" + task + ", project=" + project + ", testMethod=" + testMethod + '}';
+    }
     
     
 }

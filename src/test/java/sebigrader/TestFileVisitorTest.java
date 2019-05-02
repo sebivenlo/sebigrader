@@ -32,7 +32,7 @@ public class TestFileVisitorTest extends CollectorsTestBase {
 
         String d = "testreports/sw";
         Path p = Paths.get( d );//, "TEST-administration.PersonTest.xml" );
-        Consumer<GradeRecord> cons = gr -> testMethods.add( gr.getTestmethod() );
+        Consumer<TestResult> cons = gr -> testMethods.add( gr.getTestmethod() );
         TestReportHandler han = new TestReportHandler( p, cons );
 
         TestFileVisitor vst = new TestFileVisitor( ( Path path ) -> true, han );
@@ -44,15 +44,15 @@ public class TestFileVisitorTest extends CollectorsTestBase {
     @Test
     public void findGrades() {
 
-        final List<GradeRecord> gradeRecords = new ArrayList<>();
+        final List<TestResult> testResults = new ArrayList<>();
         String d = "testreports/examsolution";
         Path p = Paths.get( d );//, "TEST-administration.PersonTest.xml" );
-        Consumer<GradeRecord> cons = g -> gradeRecords.add( g );
+        Consumer<TestResult> cons = g -> testResults.add( g );
         TestReportHandler han = new TestReportHandler( p, cons );
 
         TestFileVisitor vst = new TestFileVisitor( ( Path path ) -> true, han );
         walk( p, vst );
-        assertEquals( 6, gradeRecords.size() );
+        assertEquals( 6, testResults.size() );
 //        Assert.fail( "method findGrades reached end. You know what to do." );
     }
 }

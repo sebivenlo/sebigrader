@@ -14,26 +14,17 @@ import static java.util.stream.Collectors.joining;
  *
  * @author Pieter van den Hombergh {@code pieter.van.den.hombergh@gmail.com}
  */
-public class TemplateCollector implements Consumer<GradeRecord> {
+public class TemplateCollector implements Consumer<TestResult> {
 
-    private final Map<String, Integer> taskLookup = new LinkedHashMap<>();
-    private static final AtomicInteger taskSerial = new AtomicInteger();
+    private final Map<Aspect, Integer> taskLookup = new LinkedHashMap<>();
 
     @Override
-    public void accept( GradeRecord t ) {
-        taskLookup.put( taskMethodKey( t ), taskSerial.incrementAndGet() );
+    public void accept( TestResult t ) {
+        taskLookup.put( t.getAspect(), t.getTask() );
     }
 
-    static String taskMethodKey( GradeRecord t ) {
-        String project = t.getProject();
-        String testmethod = t.getTestmethod();
-        return project + ':' + testmethod;
-    }
-
-    Optional<Integer> lookupTaskId( GradeRecord t ) {
-        String taskMethodKey = taskMethodKey( t );
-        Integer result = taskLookup.get( taskMethodKey );
-        return Optional.ofNullable( result );
+    Optional<Integer> lookupTaskId( Aspect aspect ) {
+        return Optional.of( aspect.task );
     }
 
     int size() {
@@ -43,10 +34,10 @@ public class TemplateCollector implements Consumer<GradeRecord> {
     @Override
     public String toString() {
 
-        return "Template:{\n" + taskLookup.keySet().stream().collect( joining( "\n\t" ) ) + "}\n";
+        return "Template:{\n" + taskLookup.keySet().stream().map( Aspect::toString ).collect( joining( "\n\t" ) ) + "}\n";
     }
 
-    Map<String, Integer> lookupMap() {
+    Map<Aspect, Integer> lookupMap() {
         return Collections.unmodifiableMap( taskLookup );
     }
 }

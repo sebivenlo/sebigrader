@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
  *
  * @author Pieter van den Hombergh {@code pieter.van.den.hombergh@gmail.com}
  */
-public class GradeRecordTest {
+public class TestResultTest {
 
     @Test
     public void parsePathSolution() {
@@ -18,11 +18,11 @@ public class GradeRecordTest {
         String passFail = "P";
         String testMethod = "aTest";
 
-        GradeRecord gr = GradeRecord.forMethod( reportPath, testMethod, passFail );
-        assertEquals( "PRC2-2018-07-02", gr.getEvent() );
-//        assertEquals( passFail, gr.getPassFail() );
-        assertEquals( testMethod, gr.getTestmethod() );
-        assertEquals( "admin", gr.getProject() );
+        TestResult tr= TestResult.forMethod( reportPath, testMethod, passFail );
+        assertEquals( "PRC2-2018-07-02", tr.getEvent() );
+        assertEquals( passFail, tr.getPassFail() );
+        assertEquals( testMethod, tr.getTestmethod() );
+        assertEquals( "admin", tr.getProject() );
 
     }
 
@@ -36,10 +36,10 @@ public class GradeRecordTest {
         String passFail = "F";
         String testMethod = "aTest";
 
-        GradeRecord gr = GradeRecord.forMethod( reportPath, testMethod, passFail );
+        TestResult gr = TestResult.forMethod( reportPath, testMethod, passFail );
         assertEquals( "PRC2-2018-07-02", gr.getEvent() );
-        assertEquals( Integer.valueOf( 123 ), gr.getStick() );
-//        assertEquals( passFail, gr.getPassFail() );
+        assertEquals( "123" , gr.getStick() );
+        assertEquals( passFail, gr.getPassFail() );
         assertEquals( testMethod, gr.getTestmethod() );
         assertEquals( project, gr.getProject() );
 

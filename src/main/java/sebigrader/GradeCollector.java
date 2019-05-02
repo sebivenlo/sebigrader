@@ -1,54 +1,38 @@
 package sebigrader;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 /**
  *
  * @author Pieter van den Hombergh {@code pieter.van.den.hombergh@gmail.com}
  */
-public class GradeCollector implements Consumer<GradeRecord> {
+public class GradeCollector implements Consumer<TestResult> {
 
     private final TemplateCollector template;
 
-    private final List<GradeRecord> results = new ArrayList<>();
+    private final Map<GradeKey, Map<String, String>> results = new HashMap<>();
 
     public GradeCollector( TemplateCollector template ) {
         this.template = template;
     }
 
     @Override
-    public void accept( GradeRecord t ) {
-        template.lookupTaskId( t ).ifPresent( task -> {
-            gradeTask( t, task );
-            results.add( t );
+    public void accept( TestResult t ) {
+        template.lookupTaskId( t.getAspect() ).ifPresent( task -> {
+
+            GradeKey gk = GradeKey.of(t);
+            Map<String, String> aspects = results.computeIfAbsent( gk, k -> new HashMap<>() );
+            aspects.put( t.getTestMode(), t.getPassFail() );
         } );
     }
 
-    void gradeTask( GradeRecord t, Integer task ) {
-        double grade = 0.0d;
-        switch ( t.getPassFail() ) {
-            case "P":
-                grade = 10.0D;
-                break;
-            case "F":
-                grade = 1.5D;
-                break;
-            default:
-            case "I":
-                grade = 0.0D;
-                break;
-            case "E":
-                grade = 1.0D;
-                break;
-
-        }
-        t.setGrade( grade );
-    }
-
-    public List<GradeRecord> getResults() {
+    public Map<GradeKey, Map<String, String>> getResults() {
         return results;
     }
-
+    
+    
 }
