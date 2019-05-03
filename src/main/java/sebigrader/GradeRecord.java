@@ -37,7 +37,6 @@ public class GradeRecord {
         // test grade is determined by 
         // 1. pass BA and 
         boolean allBusinessPass = testModes.entrySet().stream().filter( e -> aTest.test( e.getKey() ) ).allMatch( e -> e.getValue().equals( "P" ) );
-        System.out.println( "allBusiness = " + allBusinessPass );
 
         // 2. Fail at least of Bn where n = 0..
         boolean anyTestFail = testModes.entrySet()
