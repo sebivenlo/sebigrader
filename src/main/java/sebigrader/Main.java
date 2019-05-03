@@ -55,7 +55,7 @@ public class Main {
     }
 
     void printScores( final PrintStream out, Map<GradeKey, Map<String, String>> results ) {
-        out.println( "event,stick_nr,task,passFail,grade" );
+        out.println( GradeRecord.CSVHEADER );
         Comparator<Entry<GradeKey, Map<String, String>>> comp1 = ( a, b ) -> a.getKey().getStick().compareTo( b.getKey().getStick() );
         Comparator<Entry<GradeKey, Map<String, String>>> comp2 = ( a, b ) -> a.getKey().getTask() - b.getKey().getTask();
         results.entrySet()

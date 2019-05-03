@@ -1,8 +1,11 @@
 package sebigrader;
 
+import static java.util.Comparator.comparing;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
+import static java.util.stream.Collectors.joining;
 
 /**
  *
@@ -13,13 +16,15 @@ public class GradeRecord {
     private final String event;
     private final String stick;
     private final Integer task;
+    private final String passFail;
     private final Double testGrade;
     private final Double businessGrade;
 
-    public GradeRecord( String event, String stick, Integer task, Double testGrade, Double businessGrade ) {
+    public GradeRecord( String event, String stick, Integer task, String passFail, Double testGrade, Double businessGrade ) {
         this.event = event;
         this.stick = stick;
         this.task = task;
+        this.passFail = passFail;
         this.testGrade = testGrade;
         this.businessGrade = businessGrade;
     }
@@ -33,7 +38,6 @@ public class GradeRecord {
 
         bussScore = testModes.getOrDefault( "AB", "F" ).equals( "P" ) ? 10.0D : 0.0D;
 
-
         // test grade is determined by 
         // 1. pass BA and 
         boolean allBusinessPass = testModes.entrySet().stream().filter( e -> aTest.test( e.getKey() ) ).allMatch( e -> e.getValue().equals( "P" ) );
@@ -46,7 +50,14 @@ public class GradeRecord {
         testScore += allBusinessPass ? 5.0D : 0.0D;
         testScore += anyTestFail ? 5.0D : 0.0D;
 
-        return new GradeRecord( key.getEvent(), key.getStick(), key.getTask(), testScore, bussScore );
+        String passFail
+                = testModes.entrySet()
+                        .stream()
+                        .sorted( comparing( Entry<String, String>::getKey ) )
+                        .map( e -> e.getKey() + '=' + e.getValue() )
+                        .collect( joining( ":" ) );
+
+        return new GradeRecord( key.getEvent(), key.getStick(), key.getTask(), passFail, testScore, bussScore );
     }
 
     public String getEvent() {
@@ -74,14 +85,11 @@ public class GradeRecord {
     static String qcq = "\",\"";
     static String cq = ",\"";
 
-    public String csvHeader() {
-        return "event,stick,task,test,buss";
-
-    }
+    public static final String CSVHEADER = "event,stick,task,pass_fail,test,buss";
 
     @Override
     public String toString() {
-        return q + event + qc + stick + "," + task + "," + testGrade + "," + businessGrade;
+        return q + event + qc + stick + "," + task + cq + passFail + qc + testGrade + "," + businessGrade;
     }
 
 }
