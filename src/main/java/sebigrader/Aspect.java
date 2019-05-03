@@ -77,9 +77,16 @@ class Aspect {
         return testMethod;
     }
 
+     static String q = "\"";
+    static String qc = "\",";
+    static String qcq = "\",\"";
+    static String cq = ",\"";
+
+    public static final String CSVHEADER = "task,project,test_method";
+
     @Override
     public String toString() {
-        return "Aspect{" + "task=" + task + ", project=" + project + ", testMethod=" + testMethod + '}';
+        return task + cq+  project + qcq+ testMethod + '"';
     }
     
     

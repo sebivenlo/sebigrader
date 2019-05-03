@@ -40,7 +40,14 @@ public class Main {
 
 //        PrintStream sout = System.out;
         printTemplate( tcol, System.out );
+        try (
+                PrintStream out = new PrintStream( new File( "questions.csv" ) ); ) {
 
+            printTemplate( tcol, out );
+
+        } catch ( FileNotFoundException ex ) {
+            Logger.getLogger( Main.class.getName() ).log( Level.SEVERE, null, ex );
+        }
         try (
                 PrintStream out = new PrintStream( new File( "scores.csv" ) ); ) {
 
@@ -49,6 +56,7 @@ public class Main {
         } catch ( FileNotFoundException ex ) {
             Logger.getLogger( Main.class.getName() ).log( Level.SEVERE, null, ex );
         }
+
 
 //        results.forEach( System.out::println );
         printScores( System.out, results );
@@ -68,11 +76,8 @@ public class Main {
     final String q = "\"";
 
     void printTemplate( TemplateCollector tcol, PrintStream sout ) {
-        tcol.lookupMap().entrySet().stream()
-                .sorted( comparing( Map.Entry::getValue ) )
-                .forEach( e -> {
-                    sout.println( q + " " + e.getValue() + q + "," + q + e.getKey().toString().replace( ":", q + "," + q ) + q );
-                } );
+        sout.println(Aspect.CSVHEADER);
+        tcol.lookupMap().keySet().forEach( sout::println);
     }
 
     TemplateCollector createTemplate() {
