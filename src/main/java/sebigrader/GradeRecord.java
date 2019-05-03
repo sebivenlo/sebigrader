@@ -28,22 +28,26 @@ public class GradeRecord {
     static Predicate<String> aTest = Pattern.compile( "^[AB]A$" ).asPredicate();
 
     static GradeRecord of( GradeKey key, Map<String, String> testModes ) {
-        double test = 0.0D;
-        double buss = 0.0D;
+        double testScore = 0.0D;
+        double bussScore = 0.0D;
 
-        // business grade is determined by AB test
-        buss = testModes.getOrDefault( "AB", "F" ).equals( "P" ) ? 10.0D : 0.0D;
+        bussScore = testModes.getOrDefault( "AB", "F" ).equals( "P" ) ? 10.0D : 0.0D;
+
 
         // test grade is determined by 
-        // 1 pass BA
-        boolean allBusiness = testModes.entrySet().stream().filter( e -> aTest.test( e.getKey() ) ).allMatch( e -> e.getValue().equals( "P" ) );
-        
-        // 2 Fail at least of Bn where n = 0..
-        boolean anyTestFail = testModes.entrySet().stream().filter( e -> bTest.test( e.getKey() ) ).anyMatch( e -> e.getValue().equals( "F" ) );
-        test += allBusiness ? 5.0D : 0.0D;
-        test += anyTestFail ? 5.0D : 0.0D;
+        // 1. pass BA and 
+        boolean allBusinessPass = testModes.entrySet().stream().filter( e -> aTest.test( e.getKey() ) ).allMatch( e -> e.getValue().equals( "P" ) );
+        System.out.println( "allBusiness = " + allBusinessPass );
 
-        return new GradeRecord( key.getEvent(), key.getStick(), key.getTask(), test, buss );
+        // 2. Fail at least of Bn where n = 0..
+        boolean anyTestFail = testModes.entrySet()
+                .stream()
+                .filter( e -> bTest.test( e.getKey() ) )
+                .anyMatch( e -> e.getValue().equals( "F" ) );
+        testScore += allBusinessPass ? 5.0D : 0.0D;
+        testScore += anyTestFail ? 5.0D : 0.0D;
+
+        return new GradeRecord( key.getEvent(), key.getStick(), key.getTask(), testScore, bussScore );
     }
 
     public String getEvent() {
@@ -66,18 +70,19 @@ public class GradeRecord {
         return testGrade;
     }
 
-    static String q="\"";
-    static String qc="\",";
-    static String qcq="\",\"";
-    static String cq=",\"";
-    
-    public String csvHeader(){
+    static String q = "\"";
+    static String qc = "\",";
+    static String qcq = "\",\"";
+    static String cq = ",\"";
+
+    public String csvHeader() {
         return "event,stick,task,test,buss";
-        
+
     }
+
     @Override
     public String toString() {
-        return q + event +qc+  stick + ","+ task + "," + testGrade + "," + businessGrade ;
+        return q + event + qc + stick + "," + task + "," + testGrade + "," + businessGrade;
     }
 
 }

@@ -29,7 +29,7 @@ public class GradeRecordTest {
             { "FPFFEP", td( 10.0D, 0.0D, "AB", "F", "BA", "P", "BO", "F", "B1", "F", "B2", "E", "B3", "P" ) },
             { "PIIIII", td( 0.0D, 10.0D, "AB", "P", "BA", "I", "BO", "I", "B1", "I", "B2", "I", "B3", "I" ) },
             { "FPEPPP", td( 5.0D, 0.0D, "AB", "F", "BA", "P", "BO", "E", "B1", "P", "B2", "P", "B3", "P" ) },
-            { "PF", td( 10.0D, 10.0D, "AA", "P", "BO", "F" ) },
+            { "PF", td( 10.0D, 10.0D, "AB", "P", "B0", "F" ) },
         };
 
     }
