@@ -7,12 +7,14 @@ import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Comparator;
 import static java.util.Comparator.comparing;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 import static sebigrader.Settings.SETTINGS;
 
 /**
@@ -54,10 +56,12 @@ public class Main {
 
     void printScores( final PrintStream out, Map<GradeKey, Map<String, String>> results ) {
         out.println( "event,stick_nr,task,passFail,grade" );
+        Comparator<Entry<GradeKey, Map<String, String>>> comp1 = ( a, b ) -> a.getKey().getStick().compareTo( b.getKey().getStick() );
+        Comparator<Entry<GradeKey, Map<String, String>>> comp2 = ( a, b ) -> a.getKey().getTask() - b.getKey().getTask();
         results.entrySet()
                 .stream()
-//                .sorted(Entry::comparingByKey)
-                .map( e -> e.getKey() + ";" + e.getValue() )
+                .sorted( comp1.thenComparing( comp2 ) )
+                .map( e -> GradeRecord.of( e.getKey(), e.getValue() ) )
                 .forEach( out::println );
     }
 

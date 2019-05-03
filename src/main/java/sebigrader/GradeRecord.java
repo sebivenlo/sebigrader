@@ -1,10 +1,8 @@
 package sebigrader;
 
-import java.nio.file.Path;
-import java.util.Objects;
-import java.util.regex.Matcher;
+import java.util.Map;
+import java.util.function.Predicate;
 import java.util.regex.Pattern;
-import static sebigrader.Settings.SETTINGS;
 
 /**
  *
@@ -12,158 +10,74 @@ import static sebigrader.Settings.SETTINGS;
  */
 public class GradeRecord {
 
-    static final Pattern stickDirPattern = Pattern.compile( "^.*?/examproject-EXAM(\\d{3})/(.+?)/([AB][AB]|B[0-9]).*$" );
-    static final Pattern solutionDirPattern = Pattern.compile( ".*examsolution/(.+?)/.*" );
-
-    static GradeRecord forMethod( Path reportPath, String testMethod, String passFail ) {
-        String reportDir = reportPath.toAbsolutePath().toString();
-        Matcher stickM = stickDirPattern.matcher( reportDir );
-        int aStick = 0;
-        String project = "unknown";
-        String event = SETTINGS.get( "event" );
-        String testMode= "AA";
-        if ( stickM.matches() && stickM.groupCount() >= 2 ) { // wierd number
-            aStick = Integer.parseInt( stickM.group( 1 ) );
-            project = stickM.group( 2 );
-            testMode= stickM.group( 3 );
-            return new GradeRecord( event, aStick, Aspect.of( project, testMethod ), passFail );
-        }
-
-        Matcher solM = solutionDirPattern.matcher( reportDir );
-        if ( solM.matches() ) {
-            project = solM.group( 1 );
-        }
-        return new GradeRecord( event, aStick, Aspect.of( project, testMethod ), passFail );
-    }
-
-    
     private final String event;
-    private final Integer stick;
-    private final Aspect aspect;
-//    private String passFail;
-//    private double grade;
+    private final String stick;
+    private final Integer task;
+    private final Double testGrade;
+    private final Double businessGrade;
 
-    private GradeRecord( String event, Integer stick, Aspect aspect, String passFail, double grade ) {
+    public GradeRecord( String event, String stick, Integer task, Double testGrade, Double businessGrade ) {
         this.event = event;
-        this.stick = stick;//.replace( "examproject-EXAM", "");
-        this.aspect = aspect;
-//        this.passFail = passFail;
-//        this.grade = grade;
+        this.stick = stick;
+        this.task = task;
+        this.testGrade = testGrade;
+        this.businessGrade = businessGrade;
     }
 
-//    public GradeRecord( String event, Integer stick, Aspect aspect, String passFail, double grade ) {
-//        this.event = event;
-//        this.stick = stick;//.replace( "examproject-EXAM", "");
-//        this.aspect = aspect;
-//        this.passFail = passFail;
-//        this.grade = grade;
-//    }
-    private GradeRecord( String event, Integer aStick, Aspect aspect, String passFail ) {
-        this( event, aStick, aspect, passFail, 0.0D );
-    }
+    static Predicate<String> bTest = Pattern.compile( "^B\\d$" ).asPredicate();
+    static Predicate<String> aTest = Pattern.compile( "^[AB]A$" ).asPredicate();
 
-//    @Override
-//    public String toString() {
-//        String style;
-//        String normal = "\033[m";
-//        String pass = "\033[1;37;42m";
-//        String error = "\033[1;37;41m";
-//        String ignored = "\033[1;30;47m";
-//        String fail = "\033[1;37;43m";
-//        switch ( passFail ) {
-//            default:
-//            case "P":
-//                style = pass;
-//                break;
-//            case "F":
-//                style = fail;
-//                break;
-//            case "E":
-//                style = error;
-//                break;
-//            case "I":
-//                style = ignored;
-//                break;
-//
-//        }
-//        return style + event + "," + stick + "," + aspect.task + "," + aspect.project + ","
-//                + aspect.testMethod + "," + passFail + "," + grade + normal;
-//    }
+    static GradeRecord of( GradeKey key, Map<String, String> testModes ) {
+        double test = 0.0D;
+        double buss = 0.0D;
+
+        // business grade is determined by AB test
+        buss = testModes.getOrDefault( "AB", "F" ).equals( "P" ) ? 10.0D : 0.0D;
+
+        // test grade is determined by 
+        // 1 pass BA
+        boolean allBusiness = testModes.entrySet().stream().filter( e -> aTest.test( e.getKey() ) ).allMatch( e -> e.getValue().equals( "P" ) );
+        
+        // 2 Fail at least of Bn where n = 0..
+        boolean anyTestFail = testModes.entrySet().stream().filter( e -> bTest.test( e.getKey() ) ).anyMatch( e -> e.getValue().equals( "F" ) );
+        test += allBusiness ? 5.0D : 0.0D;
+        test += anyTestFail ? 5.0D : 0.0D;
+
+        return new GradeRecord( key.getEvent(), key.getStick(), key.getTask(), test, buss );
+    }
 
     public String getEvent() {
         return event;
     }
 
-    public Integer getStick() {
+    public String getStick() {
         return stick;
     }
 
-    public int getTask() {
-        return aspect.task;
+    public Integer getTask() {
+        return task;
     }
 
-    public String getProject() {
-        return aspect.project;
+    public Double getBusinessGrade() {
+        return businessGrade;
     }
 
-    public String getTestmethod() {
-        return aspect.testMethod;
+    public Double getTestGrade() {
+        return testGrade;
     }
 
-//    public double getGrade() {
-//        return grade;
-//    }
-//
-//    public GradeRecord setGrade( double grade ) {
-//        this.grade = grade;
-//        return this;
-//    }
-//
-//    public String getPassFail() {
-//        return passFail;
-//    }
-//
-//    public String getCSVRecord() {
-//
-//        return String.format( "%s,%s,%2d,%s,%.1f", event, stick, aspect.task, passFail,
-//                grade );
-//    }
-//
-//    void setPassFail( String passFail ) {
-//        this.passFail = passFail;
-//    }
-//
-    public Aspect getAspect() {
-        return aspect;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + Objects.hashCode( this.stick );
-        hash = 83 * hash + Objects.hashCode( this.aspect );
-        return hash;
-    }
-
-    @Override
-    public boolean equals( Object obj ) {
-        if ( this == obj ) {
-            return true;
-        }
-        if ( obj == null ) {
-            return false;
-        }
-        if ( getClass() != obj.getClass() ) {
-            return false;
-        }
-        final GradeRecord other = (GradeRecord) obj;
-        if ( !Objects.equals( this.stick, other.stick ) ) {
-            return false;
-        }
-        if ( !Objects.equals( this.aspect, other.aspect ) ) {
-            return false;
-        }
-        return true;
-    }
+    static String q="\"";
+    static String qc="\",";
+    static String qcq="\",\"";
+    static String cq=",\"";
     
+    public String csvHeader(){
+        return "event,stick,task,test,buss";
+        
+    }
+    @Override
+    public String toString() {
+        return q + event +qc+  stick + ","+ task + "," + testGrade + "," + businessGrade ;
+    }
+
 }
