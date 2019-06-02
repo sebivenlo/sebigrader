@@ -22,6 +22,7 @@ public class TestResult {
         String event = SETTINGS.get( "event" );
         String testMode = "AA";
         if ( stickM.matches() && stickM.groupCount() >= 2 ) { // wierd number
+        System.out.println( "considering "+ reportPath.toString() );
             aStick = stickM.group( 1 ) ;// Integer.parseInt( stickM.group( 1 ) );
             project = stickM.group( 2 );
             testMode = stickM.group( 3 );
@@ -32,7 +33,9 @@ public class TestResult {
         if ( solM.matches() ) {
             project = solM.group( 1 );
         }
-        return new TestResult( event, aStick, Aspect.of( project, testMethod ), passFail, testMode );
+        TestResult tr=new TestResult( event, aStick, Aspect.of( project, testMethod ), passFail, testMode );
+        System.out.println( "tr = " + tr );
+        return tr;
     }
 
     private final String event;

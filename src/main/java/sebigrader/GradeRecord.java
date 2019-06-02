@@ -29,26 +29,28 @@ public class GradeRecord {
         this.businessGrade = businessGrade;
     }
 
-    static Predicate<String> bTest = Pattern.compile( "^B\\d$" ).asPredicate();
-    static Predicate<String> aTest = Pattern.compile( "^[AB]A$" ).asPredicate();
-
     static GradeRecord of( GradeKey key, Map<String, String> testModes ) {
         double testScore = 0.0D;
         double bussScore = 0.0D;
+        boolean studentCodePasses = studentCodePasses( testModes );
 
-        bussScore = testModes.getOrDefault( "AB", "F" ).equals( "P" ) ? 10.0D : 0.0D;
-
-        // test grade is determined by 
-        // 1. pass BA and 
-        boolean allBusinessPass = testModes.entrySet().stream().filter( e -> aTest.test( e.getKey() ) ).allMatch( e -> e.getValue().equals( "P" ) );
+        boolean refCodePasses = refCodePassesStudent( testModes );
 
         // 2. Fail at least of Bn where n = 0..
-        boolean anyTestFail = testModes.entrySet()
-                .stream()
-                .filter( e -> bTest.test( e.getKey() ) )
-                .anyMatch( e -> e.getValue().equals( "F" ) );
-        testScore += allBusinessPass ? 5.0D : 0.0D;
-        testScore += anyTestFail ? 5.0D : 0.0D;
+        boolean anyTestFail = anyTestFail( testModes );
+        boolean trivialGreen = trivialGreen( testModes );
+        boolean trivialRed = trivialRed( testModes );
+        boolean passBB = passBB( testModes );
+        System.out.println( "trivialGreen = " + trivialGreen );
+        System.out.println( "trivialRed = " + trivialRed );
+        System.out.println( "anyTestFail = " + anyTestFail );
+        System.out.println( "refcodePasses = " + refCodePasses );
+        boolean notTrivial = !( trivialGreen || trivialRed );
+
+        bussScore = studentCodePasses ? 10.0D : 0.0D;
+
+        testScore += ( !trivialGreen && refCodePasses ) ? 5.0D : 0.0D;
+        testScore += ( !trivialRed && anyTestFail ) ? 5.0D : 0.0D;
 
         String passFail
                 = testModes.entrySet()
@@ -58,6 +60,47 @@ public class GradeRecord {
                         .collect( joining( ":" ) );
 
         return new GradeRecord( key.getEvent(), key.getStick(), key.getTask(), passFail, testScore, bussScore );
+    }
+
+    static boolean passBB( Map<String, String> testModes ) {
+        return testModes.getOrDefault( "BB", "F" ).equals( "P" );
+    }
+
+    static boolean studentCodePasses( Map<String, String> testModes ) {
+        return testModes.getOrDefault( "AB", "F" ).equals( "P" );
+    }
+
+    static boolean refCodePassesStudent( Map<String, String> testModes ) {
+        // test grade is determined by
+        // 1. pass BA and
+        return testModes.getOrDefault( "BA", "F" ).equals( "P" );
+    }
+
+    static Predicate<String> bTest = Pattern.compile( "^B[B0-9]$" ).asPredicate();
+
+    static boolean trivialRed( Map<String, String> testModes ) {
+        return testModes.size() > 0
+                && testModes.entrySet()
+                        .stream()
+                        .filter( e -> bTest.test( e.getKey() ) )
+                        .allMatch( e -> e.getValue().matches( "^[EF]$" ) );
+    }
+
+    static boolean trivialGreen( Map<String, String> testModes ) {
+        return testModes.size() > 0
+                && testModes.entrySet()
+                        .stream()
+                        .filter( e -> bTest.test( e.getKey() ) )
+                        .map( s -> s.getValue() )
+                        .allMatch( "P"::equals );
+    }
+
+    static boolean anyTestFail( Map<String, String> testModes ) {
+        return testModes
+                .entrySet()
+                .stream()
+                .filter( e -> bTest.test( e.getKey() ) && e.getValue().equals( "F" ) )
+                .count() > 0;
     }
 
     public String getEvent() {

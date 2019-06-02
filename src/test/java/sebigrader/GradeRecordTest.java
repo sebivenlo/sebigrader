@@ -2,8 +2,12 @@ package sebigrader;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import static java.util.Arrays.asList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,23 +25,27 @@ public class GradeRecordTest {
 
     @Parameters( name = "{index}: {0}" )
     public static Object[][] data() {
-
+        //{ "AB", "BA", "BB", "B0", "B1", "B2", "B3" };
         // label, test, buss, modes
         return new Object[][] {
-            { "FFFFEP", td( 5.0D, 0.0D, "AB", "F", "BA", "F", "BO", "F", "B1", "F", "B2", "E", "B3", "P" ) },
-            { "PPFFEP", td( 10.0D, 10.0D, "AB", "P", "BA", "P", "BO", "F", "B1", "F", "B2", "E", "B3", "P" ) },
-            { "FPFFEP", td( 10.0D, 0.0D, "AB", "F", "BA", "P", "BO", "F", "B1", "F", "B2", "E", "B3", "P" ) },
-            { "PIIIII", td( 0.0D, 10.0D, "AB", "P", "BA", "I", "BO", "I", "B1", "I", "B2", "I", "B3", "I" ) },
-            { "FPEPPP", td( 5.0D, 0.0D, "AB", "F", "BA", "P", "BO", "E", "B1", "P", "B2", "P", "B3", "P" ) },
-            { "PF", td( 10.0D, 10.0D, "AB", "P", "B0", "F" ) },
-        };
+            // tes, buss, fail modes
+            { "FFFFEP", td( 05.0D, 00.0D, "FFFFEP" ) }, //
+            { "PPFFEP", td( 10.0D, 10.0D, "PPFFEP" ) },
+            { "FPFFFP", td( 10.0D, 00.0D, "FPFFFP" ) },
+            { "PIIIII", td( 00.0D, 10.0D, "PIIIII" ) },
+            { "FPEPPP", td( 05.0D, 00.0D, "FPEPPP" ) },
+            { "FPPPPP", td( 00.0D, 00.0D, "FPPPPP" ) },// trivial green
+            { "PPPPPP", td( 00.0D, 10.0D, "PPPPPP" ) },
+            { "PF",     td( 00.0D, 10.0D, "PF" ) },
+            { "F",      td( 00.0D, 00.0D, "F" ) }, };
 
     }
 
-    Map<String, String> modes = new HashMap<>();
+    Map<String, String> modes = new LinkedHashMap<>();
     TD td;
     String flag;
-    String passFails="";
+    String passFails = "";
+
     public GradeRecordTest( String flag, TD td ) {
         this.flag = flag;
         this.td = td;
@@ -51,11 +59,12 @@ public class GradeRecordTest {
     //@Ignore( "Think TDD" )
     @Test
     public void method() {
+        System.out.println( "test" +td );
         GradeKey key = createGradeKey();
 
         GradeRecord gr = GradeRecord.of( key, modes );
-        Assert.assertEquals( "test grade " + passFails, td.testGrade, gr.getTestGrade(), 0.01D );
-        Assert.assertEquals( "business grade" + passFails, td.businessGrade, gr.getBusinessGrade(), 0.01D );
+        Assert.assertEquals( "test grade " + modes + " " + passFails, td.testGrade, gr.getTestGrade(), 0.01D );
+        Assert.assertEquals( "business grade " + modes + " " + passFails, td.businessGrade, gr.getBusinessGrade(), 0.01D );
 
         //Assert.fail( "method method reached end. You know what to do." );
     }
@@ -75,19 +84,30 @@ public class GradeRecordTest {
 
         final Double testGrade;
         final Double businessGrade;
+        static final String[] modeNames = { "AB", "BA", "BB", "B0", "B1", "B2", "B3" };
         final String[] modes;
 
-        public TD( Double testGrade, Double businessGrade, String... modes ) {
+        public TD( Double testGrade, Double businessGrade, String fp, String... modes ) {
             this.testGrade = testGrade;
             this.businessGrade = businessGrade;
-            this.modes = modes;
-            System.out.println( "modes = " + Arrays.toString( modes ) );
+            List<String> modeList = new ArrayList<>();
+            for ( int i = 0; i < fp.length(); i++ ) {
+                modeList.add( modeNames[ i ] );
+                modeList.add( "" + fp.charAt( i ) );
+            }
+            this.modes = modeList.toArray( new String[ modeList.size() ] );
         }
 
+        @Override
+        public String toString() {
+            return "TD{" + "testGrade=" + testGrade + ", businessGrade=" + businessGrade + ", modes=" + Arrays.toString( modes) + '}';
+        }
+
+        
     }
 
-    static TD td( Double testGrade, Double businessGrade, String... modes ) {
-        return new TD( testGrade, businessGrade, modes );
+    static TD td( Double testGrade, Double businessGrade, String fp, String... modes ) {
+        return new TD( testGrade, businessGrade, fp, modes );
     }
 
 }
