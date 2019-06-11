@@ -22,17 +22,19 @@ public class TestResult {
         String event = SETTINGS.get( "event" );
         String testMode = "AA";
         if ( stickM.matches() && stickM.groupCount() >= 2 ) { // wierd number
-            aStick = stickM.group( 1 ) ;// Integer.parseInt( stickM.group( 1 ) );
+            System.out.println( "considering " + reportPath.toString() );
+            aStick = stickM.group( 1 );// Integer.parseInt( stickM.group( 1 ) );
             project = stickM.group( 2 );
             testMode = stickM.group( 3 );
-            return new TestResult( event, aStick, Aspect.of( event,project, testMethod ), passFail, testMode );
+            return new TestResult( event, aStick, Aspect.of( event, project, testMethod ), passFail, testMode );
         }
 
         Matcher solM = solutionDirPattern.matcher( reportDir );
         if ( solM.matches() ) {
             project = solM.group( 1 );
         }
-        return new TestResult( event, aStick, Aspect.of( event,project, testMethod ), passFail, testMode );
+        TestResult tr = new TestResult( event, aStick, Aspect.of( event, project, testMethod ), passFail, testMode );
+        return tr;
     }
 
     private final String event;
@@ -113,5 +115,5 @@ public class TestResult {
     public String getTestMode() {
         return testMode;
     }
-    
+
 }
