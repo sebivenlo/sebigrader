@@ -25,14 +25,14 @@ public class TestResult {
             aStick = stickM.group( 1 ) ;// Integer.parseInt( stickM.group( 1 ) );
             project = stickM.group( 2 );
             testMode = stickM.group( 3 );
-            return new TestResult( event, aStick, Aspect.of( project, testMethod ), passFail, testMode );
+            return new TestResult( event, aStick, Aspect.of( event,project, testMethod ), passFail, testMode );
         }
 
         Matcher solM = solutionDirPattern.matcher( reportDir );
         if ( solM.matches() ) {
             project = solM.group( 1 );
         }
-        return new TestResult( event, aStick, Aspect.of( project, testMethod ), passFail, testMode );
+        return new TestResult( event, aStick, Aspect.of( event,project, testMethod ), passFail, testMode );
     }
 
     private final String event;

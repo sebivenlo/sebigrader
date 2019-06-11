@@ -13,32 +13,33 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author Pieter van den Hombergh {@code pieter.van.den.hombergh@gmail.com}
  */
 class Aspect {
-    
+
     private final static Set<Aspect> idMap = new HashSet<>();
     private final static AtomicInteger nextId = new AtomicInteger();
-   
+    final String event;
     final Integer task;
     final String project;
     final String testMethod;
-    
-    private Aspect( Integer task, String project, String testMethod ) {
-        this.task=task;
+
+    private Aspect( String event, Integer task, String project, String testMethod ) {
+        this.event = event;
+        this.task = task;
         this.project = project;
         this.testMethod = testMethod;
     }
-    
-    static Aspect of( String project, String testmethod ) {
+
+    static Aspect of( String event, String project, String testmethod ) {
         Optional<Aspect> findAny = idMap.stream().filter( a -> ( a.project.equals( project ) && a.testMethod.equals( testmethod ) ) ).findAny();
-        
+
         if ( findAny.isPresent() ) {
             return findAny.get();
         }
-        
-        Aspect na = new Aspect(nextId.incrementAndGet(),project,testmethod);
-            idMap.add( na );
+
+        Aspect na = new Aspect( event, nextId.incrementAndGet(), project, testmethod );
+        idMap.add( na );
         return na;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -46,7 +47,7 @@ class Aspect {
         hash = 37 * hash + Objects.hashCode( this.testMethod );
         return hash;
     }
-    
+
     @Override
     public boolean equals( Object obj ) {
         if ( this == obj ) {
@@ -77,17 +78,16 @@ class Aspect {
         return testMethod;
     }
 
-     static String q = "\"";
+    static String q = "\"";
     static String qc = "\",";
     static String qcq = "\",\"";
     static String cq = ",\"";
 
-    public static final String CSVHEADER = "task,project,test_method";
+    public static final String CSVHEADER = "event,task,project,test_method";
 
     @Override
     public String toString() {
-        return task + cq+  project + qcq+ testMethod + '"';
+        return q + event + qc + task + cq + project + qcq + testMethod + '"';
     }
-    
-    
+
 }
