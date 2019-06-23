@@ -36,8 +36,8 @@ public class GradeRecordTest {
             { "FPEPPP", td( 05.0D, 00.0D, "FPEPPP" ) },
             { "FPPPPP", td( 00.0D, 00.0D, "FPPPPP" ) },// trivial green
             { "PPPPPP", td( 00.0D, 10.0D, "PPPPPP" ) },
-            { "PF",     td( 00.0D, 10.0D, "PF" ) },
-            { "F",      td( 00.0D, 00.0D, "F" ) }, };
+            { "PF", td( 00.0D, 10.0D, "PF" ) },
+            { "F", td( 00.0D, 00.0D, "F" ) }, };
 
     }
 
@@ -59,7 +59,6 @@ public class GradeRecordTest {
     //@Ignore( "Think TDD" )
     @Test
     public void method() {
-        System.out.println( "test" +td );
         GradeKey key = createGradeKey();
 
         GradeRecord gr = GradeRecord.of( key, modes );
@@ -100,10 +99,9 @@ public class GradeRecordTest {
 
         @Override
         public String toString() {
-            return "TD{" + "testGrade=" + testGrade + ", businessGrade=" + businessGrade + ", modes=" + Arrays.toString( modes) + '}';
+            return "TD{" + "testGrade=" + testGrade + ", businessGrade=" + businessGrade + ", modes=" + Arrays.toString( modes ) + '}';
         }
 
-        
     }
 
     static TD td( Double testGrade, Double businessGrade, String fp, String... modes ) {

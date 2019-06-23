@@ -31,9 +31,9 @@ public class AnyFailPassTest {
         predMap.put( "anyTestFail", GradeRecord::anyTestFail );
         predMap.put( "trivialRed", GradeRecord::trivialRed );
         predMap.put( "trivialGreen", GradeRecord::trivialGreen );
-        predMap.put("studentCodePasses", GradeRecord::studentCodePasses);
-        predMap.put("refCodePassesStudent", GradeRecord::refCodePassesStudent);
-        predMap.put("passBB", GradeRecord::passBB);
+        predMap.put( "studentCodePasses", GradeRecord::studentCodePasses );
+        predMap.put( "refCodePassesStudent", GradeRecord::refCodePassesStudent );
+        predMap.put( "passBB", GradeRecord::passBB );
     }
 
     @Parameters( name = "{index}: {0}" )
@@ -50,14 +50,12 @@ public class AnyFailPassTest {
             m( false, "trivialGreen", "BB", "P", "B0", "F", "B1", "P" ),
             m( true, "studentCodePasses", "AB", "P" ),
             m( false, "studentCodePasses", "AB", "F" ),
-            m( false, "refCodePassesStudent", "AB", "P","BA", "F", "B0", "P", "B1", "P"),
-            m( false, "refCodePassesStudent", "AB", "F","BA", "F", "B0", "P", "B1", "P"),
-            m( true, "refCodePassesStudent", "AB", "P","BA", "P", "B0", "P", "B1", "P"),
-            m( true, "refCodePassesStudent", "AB", "F","BA", "P", "B0", "P", "B1", "P"),
-            m( true, "passBB", "BB","P","AB", "F","BA", "P", "B0", "P", "B1", "P"),
-            m( false, "passBB", "BB","F","AB", "F","BA", "P", "B0", "P", "B1", "P"),
-            
-        };
+            m( false, "refCodePassesStudent", "AB", "P", "BA", "F", "B0", "P", "B1", "P" ),
+            m( false, "refCodePassesStudent", "AB", "F", "BA", "F", "B0", "P", "B1", "P" ),
+            m( true, "refCodePassesStudent", "AB", "P", "BA", "P", "B0", "P", "B1", "P" ),
+            m( true, "refCodePassesStudent", "AB", "F", "BA", "P", "B0", "P", "B1", "P" ),
+            m( true, "passBB", "BB", "P", "AB", "F", "BA", "P", "B0", "P", "B1", "P" ),
+            m( false, "passBB", "BB", "F", "AB", "F", "BA", "P", "B0", "P", "B1", "P" ), };
     }
     final M m;
 
@@ -68,7 +66,6 @@ public class AnyFailPassTest {
 //    @Ignore( "Think TDD" )
     @Test
     public void method() {
-        System.out.println( "m = " + m );
         assertEquals( m.expected, predMap.get( m.pred ).test( m.testModes ) );
         // Assert.fail( "method method reached end. You know what to do." );
     }

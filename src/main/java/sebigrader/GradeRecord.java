@@ -41,10 +41,6 @@ public class GradeRecord {
         boolean trivialGreen = trivialGreen( testModes );
         boolean trivialRed = trivialRed( testModes );
         boolean passBB = passBB( testModes );
-        System.out.println( "trivialGreen = " + trivialGreen );
-        System.out.println( "trivialRed = " + trivialRed );
-        System.out.println( "anyTestFail = " + anyTestFail );
-        System.out.println( "refcodePasses = " + refCodePasses );
         boolean notTrivial = !( trivialGreen || trivialRed );
 
         bussScore = studentCodePasses ? 10.0D : 0.0D;

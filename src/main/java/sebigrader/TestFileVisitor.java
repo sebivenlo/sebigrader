@@ -24,7 +24,7 @@ class TestFileVisitor implements FileVisitor<Path> {
     private final Predicate<Path> acceptDir;
     private final TestReportHandler handler;
 
-    public TestFileVisitor( Predicate<Path> acceptDir,  TestReportHandler handler ) {
+    public TestFileVisitor( Predicate<Path> acceptDir, TestReportHandler handler ) {
         this.acceptDir = acceptDir;
         this.handler = handler;
     }
@@ -52,7 +52,6 @@ class TestFileVisitor implements FileVisitor<Path> {
     @Override
     public FileVisitResult visitFile( Path file, BasicFileAttributes attrs ) throws IOException {
         String fileName = file.getFileName().toString();
-//        System.out.println( "visit fileName = " + fileName );
         boolean acceptableFile = SETTINGS.TEST_RESULT_FILE_PATTERN.matcher( fileName ).matches();
         if ( acceptableFile ) {
             Path aPath = file.toAbsolutePath();

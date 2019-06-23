@@ -29,7 +29,6 @@ public class TemplateCollectorTest extends CollectorsTestBase {
 
     }
 
-
 //    @Ignore( "Think TDD" )
     @Test
     public void correctAdmin() {
@@ -42,6 +41,5 @@ public class TemplateCollectorTest extends CollectorsTestBase {
         walk( p, vst );
         assertEquals( 6, cons.size() );
     }
-    
 
 }

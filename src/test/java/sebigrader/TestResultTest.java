@@ -18,7 +18,7 @@ public class TestResultTest {
         String passFail = "P";
         String testMethod = "aTest";
 
-        TestResult tr= TestResult.forMethod( reportPath, testMethod, passFail );
+        TestResult tr = TestResult.forMethod( reportPath, testMethod, passFail );
         assertEquals( "PRC2-2018-07-02", tr.getEvent() );
         assertEquals( passFail, tr.getPassFail() );
         assertEquals( testMethod, tr.getTestmethod() );
@@ -38,7 +38,7 @@ public class TestResultTest {
 
         TestResult gr = TestResult.forMethod( reportPath, testMethod, passFail );
         assertEquals( "PRC2-2018-07-02", gr.getEvent() );
-        assertEquals( "123" , gr.getStick() );
+        assertEquals( "123", gr.getStick() );
         assertEquals( passFail, gr.getPassFail() );
         assertEquals( testMethod, gr.getTestmethod() );
         assertEquals( project, gr.getProject() );

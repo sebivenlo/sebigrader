@@ -3,6 +3,24 @@
 ## bsd  readlink will not work, so maccies beware.
 scriptdir=$(dirname $(readlink -f $0))
 jar=${scriptdir}/target/sebigrader.jar
-ls -lt ${jar}
+# ls -lt ${jar}
 
-java -jar ${jar}
+SANDBOXES=sw
+if [[ $# > 0 ]] ; then
+    SANDBOXES=$1
+    shift
+fi
+
+export SANDBOXES
+
+java -jar ${jar} "${SANDBOXES}"
+
+q=$(cat questions.csv | wc -l)
+q=$((q-1))
+echo "found $q questions";
+s=$(cat scores.csv | wc -l)
+s=$((s-1))
+sc=$(($s/$q))
+echo "found $s scores is on average  $sc candidates per question"
+
+

@@ -31,5 +31,5 @@ class CollectorsTestBase {
         }
         //        Assert.fail( "method method reached end. You know what to do." );
     }
-    
+
 }

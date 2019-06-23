@@ -23,23 +23,28 @@ import static sebigrader.Settings.SETTINGS;
  */
 public class Main {
 
+    static String sandboxes;
+
     public static void main( String[] args ) throws IOException {
+        if ( args.length > 0 ) {
+            sandboxes = args[ 0 ];
+        } else {
+            sandboxes = SETTINGS.get( "sandboxes" );
+
+        }
         new Main().run();
     }
 
     public void run() {
         TemplateCollector tcol = createTemplate();
-        String d = SETTINGS.get( "sandboxes" );
-        Path p = Paths.get( d );
+        Path sandboxesPath = Paths.get( sandboxes );
         GradeCollector gcol = new GradeCollector( tcol );
-
-        TestReportHandler han = new TestReportHandler( p, gcol );
+        System.out.println( "sandboxesPath = " + sandboxesPath.toAbsolutePath().toString() );
+        TestReportHandler han = new TestReportHandler( sandboxesPath, gcol );
         TestFileVisitor vst = new TestFileVisitor( ( Path path ) -> true, han );
-        walk( p, vst );
+        walk( sandboxesPath, vst );
         Map<GradeKey, Map<String, String>> results = gcol.getResults();
 
-//        PrintStream sout = System.out;
-        printTemplate( tcol, System.out );
         try ( PrintStream out = new PrintStream( new File( "questions.csv" ) ); ) {
 
             printTemplate( tcol, out );
@@ -56,8 +61,6 @@ public class Main {
             Logger.getLogger( Main.class.getName() ).log( Level.SEVERE, null, ex );
         }
 
-//        results.forEach( System.out::println );
-        printScores( System.out, results );
     }
 
     void printScores( final PrintStream out, Map<GradeKey, Map<String, String>> results ) {

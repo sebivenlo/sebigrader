@@ -22,7 +22,6 @@ public class TestResult {
         String event = SETTINGS.get( "event" );
         String testMode = "AA";
         if ( stickM.matches() && stickM.groupCount() >= 2 ) { // wierd number
-            System.out.println( "considering " + reportPath.toString() );
             aStick = stickM.group( 1 );// Integer.parseInt( stickM.group( 1 ) );
             project = stickM.group( 2 );
             testMode = stickM.group( 3 );
@@ -51,11 +50,17 @@ public class TestResult {
         this.testMode = testMode;
     }
 
+    static TestResult forCompilerError( String event, String aStick, String project, String testMethod, String testMode, String passFail ) {
+        return new TestResult( event, aStick, Aspect.of( event, project, testMethod+"?" ), passFail, testMode );
+    }
+
     @Override
     public String toString() {
         String style;
         String normal = "\033[m";
         String pass = "\033[1;37;42m";
+        String cerror = "\033[1;37;46m";
+        String terror = "\033[1;37;45m";
         String error = "\033[1;37;41m";
         String ignored = "\033[1;30;47m";
         String fail = "\033[1;37;43m";
@@ -63,6 +68,12 @@ public class TestResult {
             default:
             case "P":
                 style = pass;
+                break;
+            case "t":
+                style= terror;
+                break;
+            case "c":
+                style= cerror;
                 break;
             case "F":
                 style = fail;

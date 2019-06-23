@@ -24,7 +24,7 @@ public class GradeCollector implements Consumer<TestResult> {
     public void accept( TestResult t ) {
         template.lookupTaskId( t.getAspect() ).ifPresent( task -> {
 
-            GradeKey gk = GradeKey.of(t);
+            GradeKey gk = GradeKey.of( t );
             Map<String, String> aspects = results.computeIfAbsent( gk, k -> new HashMap<>() );
             aspects.put( t.getTestMode(), t.getPassFail() );
         } );

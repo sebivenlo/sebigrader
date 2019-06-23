@@ -1,0 +1,560 @@
+[ERROR] /tmp/arena/EXAM101-templateengine-B0/src/test/java/templateengine/EngineTest.java:[92,9] cannot find symbol
+  symbol:   method String(java.lang.String,java.lang.String,java.util.Map<java.lang.String,java.lang.String>)
+  location: class templateengine.EngineTest
+[ERROR] /tmp/arena/EXAM101-templateengine-BB/src/test/java/templateengine/EngineTest.java:[92,9] cannot find symbol
+  symbol:   method String(java.lang.String,java.lang.String,java.util.Map<java.lang.String,java.lang.String>)
+  location: class templateengine.EngineTest
+[ERROR] /tmp/arena/EXAM101-templateengine-B2/src/test/java/templateengine/EngineTest.java:[92,9] cannot find symbol
+  symbol:   method String(java.lang.String,java.lang.String,java.util.Map<java.lang.String,java.lang.String>)
+  location: class templateengine.EngineTest
+[ERROR] /tmp/arena/EXAM101-templateengine-B1/src/test/java/templateengine/EngineTest.java:[92,9] cannot find symbol
+  symbol:   method String(java.lang.String,java.lang.String,java.util.Map<java.lang.String,java.lang.String>)
+  location: class templateengine.EngineTest
+[ERROR] /tmp/arena/EXAM101-templateengine-BA/src/test/java/templateengine/EngineTest.java:[92,9] cannot find symbol
+  symbol:   method String(java.lang.String,java.lang.String,java.util.Map<java.lang.String,java.lang.String>)
+  location: class templateengine.EngineTest
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM147-rentalcompany-B0/src/test/java/rentalcompany/RentalCompanyTest.java:[68,42] method comparingDouble in interface java.util.Comparator<T> cannot be applied to given types;
+  required: java.util.function.ToDoubleFunction<? super T>
+  found: Booking::totalPrice
+  reason: cannot infer type-variable(s) T
+    (argument mismatch; invalid method reference
+      cannot find symbol
+        symbol:   method totalPrice(T)
+        location: class rentalcompany.Booking)
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure
+[ERROR] /tmp/arena/EXAM147-rentalcompany-B0/src/test/java/rentalcompany/RentalCompanyTest.java:[68,42] method comparingDouble in interface java.util.Comparator<T> cannot be applied to given types;
+[ERROR]   required: java.util.function.ToDoubleFunction<? super T>
+[ERROR]   found: Booking::totalPrice
+[ERROR]   reason: cannot infer type-variable(s) T
+[ERROR]     (argument mismatch; invalid method reference
+[ERROR]       cannot find symbol
+[ERROR]         symbol:   method totalPrice(T)
+[ERROR]         location: class rentalcompany.Booking)
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM147-rentalcompany-BB/src/test/java/rentalcompany/RentalCompanyTest.java:[68,42] method comparingDouble in interface java.util.Comparator<T> cannot be applied to given types;
+  required: java.util.function.ToDoubleFunction<? super T>
+  found: Booking::totalPrice
+  reason: cannot infer type-variable(s) T
+    (argument mismatch; invalid method reference
+      cannot find symbol
+        symbol:   method totalPrice(T)
+        location: class rentalcompany.Booking)
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure
+[ERROR] /tmp/arena/EXAM147-rentalcompany-BB/src/test/java/rentalcompany/RentalCompanyTest.java:[68,42] method comparingDouble in interface java.util.Comparator<T> cannot be applied to given types;
+[ERROR]   required: java.util.function.ToDoubleFunction<? super T>
+[ERROR]   found: Booking::totalPrice
+[ERROR]   reason: cannot infer type-variable(s) T
+[ERROR]     (argument mismatch; invalid method reference
+[ERROR]       cannot find symbol
+[ERROR]         symbol:   method totalPrice(T)
+[ERROR]         location: class rentalcompany.Booking)
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM147-rentalcompany-B1/src/test/java/rentalcompany/RentalCompanyTest.java:[68,42] method comparingDouble in interface java.util.Comparator<T> cannot be applied to given types;
+  required: java.util.function.ToDoubleFunction<? super T>
+  found: Booking::totalPrice
+  reason: cannot infer type-variable(s) T
+    (argument mismatch; invalid method reference
+      cannot find symbol
+        symbol:   method totalPrice(T)
+        location: class rentalcompany.Booking)
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure
+[ERROR] /tmp/arena/EXAM147-rentalcompany-B1/src/test/java/rentalcompany/RentalCompanyTest.java:[68,42] method comparingDouble in interface java.util.Comparator<T> cannot be applied to given types;
+[ERROR]   required: java.util.function.ToDoubleFunction<? super T>
+[ERROR]   found: Booking::totalPrice
+[ERROR]   reason: cannot infer type-variable(s) T
+[ERROR]     (argument mismatch; invalid method reference
+[ERROR]       cannot find symbol
+[ERROR]         symbol:   method totalPrice(T)
+[ERROR]         location: class rentalcompany.Booking)
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM147-rentalcompany-BA/src/test/java/rentalcompany/RentalCompanyTest.java:[68,42] method comparingDouble in interface java.util.Comparator<T> cannot be applied to given types;
+  required: java.util.function.ToDoubleFunction<? super T>
+  found: Booking::totalPrice
+  reason: cannot infer type-variable(s) T
+    (argument mismatch; invalid method reference
+      cannot find symbol
+        symbol:   method totalPrice(T)
+        location: class rentalcompany.Booking)
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure
+[ERROR] /tmp/arena/EXAM147-rentalcompany-BA/src/test/java/rentalcompany/RentalCompanyTest.java:[68,42] method comparingDouble in interface java.util.Comparator<T> cannot be applied to given types;
+[ERROR]   required: java.util.function.ToDoubleFunction<? super T>
+[ERROR]   found: Booking::totalPrice
+[ERROR]   reason: cannot infer type-variable(s) T
+[ERROR]     (argument mismatch; invalid method reference
+[ERROR]       cannot find symbol
+[ERROR]         symbol:   method totalPrice(T)
+[ERROR]         location: class rentalcompany.Booking)
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM103-rentalcompany-B0/src/test/java/rentalcompany/SeasonTest.java:[40,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-B0/src/test/java/rentalcompany/SeasonTest.java:[57,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-B0/src/test/java/rentalcompany/SeasonTest.java:[74,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-B0/src/test/java/rentalcompany/BookingTest.java:[39,41] incompatible types: int cannot be converted to rentalcompany.TimePeriod
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure: Compilation failure: 
+[ERROR] /tmp/arena/EXAM103-rentalcompany-B0/src/test/java/rentalcompany/SeasonTest.java:[40,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-B0/src/test/java/rentalcompany/SeasonTest.java:[57,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-B0/src/test/java/rentalcompany/SeasonTest.java:[74,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-B0/src/test/java/rentalcompany/BookingTest.java:[39,41] incompatible types: int cannot be converted to rentalcompany.TimePeriod
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM103-rentalcompany-BB/src/test/java/rentalcompany/SeasonTest.java:[40,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-BB/src/test/java/rentalcompany/SeasonTest.java:[57,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-BB/src/test/java/rentalcompany/SeasonTest.java:[74,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-BB/src/test/java/rentalcompany/BookingTest.java:[39,41] incompatible types: int cannot be converted to rentalcompany.TimePeriod
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure: Compilation failure: 
+[ERROR] /tmp/arena/EXAM103-rentalcompany-BB/src/test/java/rentalcompany/SeasonTest.java:[40,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-BB/src/test/java/rentalcompany/SeasonTest.java:[57,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-BB/src/test/java/rentalcompany/SeasonTest.java:[74,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-BB/src/test/java/rentalcompany/BookingTest.java:[39,41] incompatible types: int cannot be converted to rentalcompany.TimePeriod
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM103-rentalcompany-B1/src/test/java/rentalcompany/SeasonTest.java:[40,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-B1/src/test/java/rentalcompany/SeasonTest.java:[57,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-B1/src/test/java/rentalcompany/SeasonTest.java:[74,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-B1/src/test/java/rentalcompany/BookingTest.java:[39,41] incompatible types: int cannot be converted to rentalcompany.TimePeriod
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure: Compilation failure: 
+[ERROR] /tmp/arena/EXAM103-rentalcompany-B1/src/test/java/rentalcompany/SeasonTest.java:[40,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-B1/src/test/java/rentalcompany/SeasonTest.java:[57,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-B1/src/test/java/rentalcompany/SeasonTest.java:[74,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-B1/src/test/java/rentalcompany/BookingTest.java:[39,41] incompatible types: int cannot be converted to rentalcompany.TimePeriod
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM103-rentalcompany-BA/src/test/java/rentalcompany/SeasonTest.java:[40,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-BA/src/test/java/rentalcompany/SeasonTest.java:[57,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-BA/src/test/java/rentalcompany/SeasonTest.java:[74,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-BA/src/test/java/rentalcompany/BookingTest.java:[39,41] incompatible types: int cannot be converted to rentalcompany.TimePeriod
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure: Compilation failure: 
+[ERROR] /tmp/arena/EXAM103-rentalcompany-BA/src/test/java/rentalcompany/SeasonTest.java:[40,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-BA/src/test/java/rentalcompany/SeasonTest.java:[57,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-BA/src/test/java/rentalcompany/SeasonTest.java:[74,9] variable a might not have been initialized
+[ERROR] /tmp/arena/EXAM103-rentalcompany-BA/src/test/java/rentalcompany/BookingTest.java:[39,41] incompatible types: int cannot be converted to rentalcompany.TimePeriod
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] /tmp/arena/EXAM103-templateengine-B0/src/test/java/templateengine/EngineTest.java:[94,9] illegal start of expression
+[ERROR] /tmp/arena/EXAM103-templateengine-BB/src/test/java/templateengine/EngineTest.java:[94,9] illegal start of expression
+[ERROR] /tmp/arena/EXAM103-templateengine-B2/src/test/java/templateengine/EngineTest.java:[94,9] illegal start of expression
+[ERROR] /tmp/arena/EXAM103-templateengine-B1/src/test/java/templateengine/EngineTest.java:[94,9] illegal start of expression
+[ERROR] /tmp/arena/EXAM103-templateengine-BA/src/test/java/templateengine/EngineTest.java:[94,9] illegal start of expression
+[ERROR] /tmp/arena/EXAM100-templateengine-B0/src/test/java/templateengine/EngineTest.java:[90,15] no suitable method found for accept(java.lang.String)
+    method java.util.function.IntConsumer.accept(int) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to int)
+    method templateengine.Engine.accept(int) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to int)
+[ERROR] /tmp/arena/EXAM100-templateengine-BB/src/test/java/templateengine/EngineTest.java:[90,15] no suitable method found for accept(java.lang.String)
+    method java.util.function.IntConsumer.accept(int) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to int)
+    method templateengine.Engine.accept(int) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to int)
+[ERROR] /tmp/arena/EXAM100-templateengine-B2/src/test/java/templateengine/EngineTest.java:[90,15] no suitable method found for accept(java.lang.String)
+    method java.util.function.IntConsumer.accept(int) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to int)
+    method templateengine.Engine.accept(int) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to int)
+[ERROR] /tmp/arena/EXAM100-templateengine-B1/src/test/java/templateengine/EngineTest.java:[90,15] no suitable method found for accept(java.lang.String)
+    method java.util.function.IntConsumer.accept(int) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to int)
+    method templateengine.Engine.accept(int) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to int)
+[ERROR] /tmp/arena/EXAM100-templateengine-BA/src/test/java/templateengine/EngineTest.java:[90,15] no suitable method found for accept(java.lang.String)
+    method java.util.function.IntConsumer.accept(int) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to int)
+    method templateengine.Engine.accept(int) is not applicable
+      (argument mismatch; java.lang.String cannot be converted to int)
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM126-ddlgenerator-B0/src/test/java/nl/fontys/sebivenlo/ddlgenerator/DeclarationLineTest.java:[72,38] ';' expected
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project ddlgenerator: Compilation failure
+[ERROR] /tmp/arena/EXAM126-ddlgenerator-B0/src/test/java/nl/fontys/sebivenlo/ddlgenerator/DeclarationLineTest.java:[72,38] ';' expected
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM126-ddlgenerator-BB/src/test/java/nl/fontys/sebivenlo/ddlgenerator/DeclarationLineTest.java:[72,38] ';' expected
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project ddlgenerator: Compilation failure
+[ERROR] /tmp/arena/EXAM126-ddlgenerator-BB/src/test/java/nl/fontys/sebivenlo/ddlgenerator/DeclarationLineTest.java:[72,38] ';' expected
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM126-ddlgenerator-B1/src/test/java/nl/fontys/sebivenlo/ddlgenerator/DeclarationLineTest.java:[72,38] ';' expected
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project ddlgenerator: Compilation failure
+[ERROR] /tmp/arena/EXAM126-ddlgenerator-B1/src/test/java/nl/fontys/sebivenlo/ddlgenerator/DeclarationLineTest.java:[72,38] ';' expected
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM126-ddlgenerator-BA/src/test/java/nl/fontys/sebivenlo/ddlgenerator/DeclarationLineTest.java:[72,38] ';' expected
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project ddlgenerator: Compilation failure
+[ERROR] /tmp/arena/EXAM126-ddlgenerator-BA/src/test/java/nl/fontys/sebivenlo/ddlgenerator/DeclarationLineTest.java:[72,38] ';' expected
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM146-rentalcompany-B0/src/test/java/rentalcompany/TimePeriodTest.java:[51,21] illegal start of expression
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure
+[ERROR] /tmp/arena/EXAM146-rentalcompany-B0/src/test/java/rentalcompany/TimePeriodTest.java:[51,21] illegal start of expression
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM146-rentalcompany-BB/src/test/java/rentalcompany/TimePeriodTest.java:[51,21] illegal start of expression
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure
+[ERROR] /tmp/arena/EXAM146-rentalcompany-BB/src/test/java/rentalcompany/TimePeriodTest.java:[51,21] illegal start of expression
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM146-rentalcompany-B1/src/test/java/rentalcompany/TimePeriodTest.java:[51,21] illegal start of expression
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure
+[ERROR] /tmp/arena/EXAM146-rentalcompany-B1/src/test/java/rentalcompany/TimePeriodTest.java:[51,21] illegal start of expression
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM146-rentalcompany-BA/src/test/java/rentalcompany/TimePeriodTest.java:[51,21] illegal start of expression
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure
+[ERROR] /tmp/arena/EXAM146-rentalcompany-BA/src/test/java/rentalcompany/TimePeriodTest.java:[51,21] illegal start of expression
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM130-rentalcompany-AB/src/main/java/rentalcompany/Booking.java:[45,9] incompatible types: missing return value
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:compile (default-compile) on project rentalcompany: Compilation failure
+[ERROR] /tmp/arena/EXAM130-rentalcompany-AB/src/main/java/rentalcompany/Booking.java:[45,9] incompatible types: missing return value
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM102-rentalcompany-AB/src/main/java/rentalcompany/Season.java:[66,23] <identifier> expected
+[ERROR] /tmp/arena/EXAM102-rentalcompany-AB/src/main/java/rentalcompany/Season.java:[66,22] not a statement
+[ERROR] /tmp/arena/EXAM102-rentalcompany-AB/src/main/java/rentalcompany/Season.java:[67,16] not a statement
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:compile (default-compile) on project rentalcompany: Compilation failure: Compilation failure: 
+[ERROR] /tmp/arena/EXAM102-rentalcompany-AB/src/main/java/rentalcompany/Season.java:[66,23] <identifier> expected
+[ERROR] /tmp/arena/EXAM102-rentalcompany-AB/src/main/java/rentalcompany/Season.java:[66,22] not a statement
+[ERROR] /tmp/arena/EXAM102-rentalcompany-AB/src/main/java/rentalcompany/Season.java:[67,16] not a statement
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM104-rentalcompany-B0/src/test/java/rentalcompany/SeasonTest.java:[40,9] variable s might not have been initialized
+[ERROR] /tmp/arena/EXAM104-rentalcompany-B0/src/test/java/rentalcompany/SeasonTest.java:[59,9] variable s might not have been initialized
+[ERROR] /tmp/arena/EXAM104-rentalcompany-B0/src/test/java/rentalcompany/SeasonTest.java:[79,9] variable s might not have been initialized
+[ERROR] /tmp/arena/EXAM104-rentalcompany-B0/src/test/java/rentalcompany/TimePeriodTabularTest.java:[61,35] incompatible types: long cannot be converted to boolean
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure: Compilation failure: 
+[ERROR] /tmp/arena/EXAM104-rentalcompany-B0/src/test/java/rentalcompany/SeasonTest.java:[40,9] variable s might not have been initialized
+[ERROR] /tmp/arena/EXAM104-rentalcompany-B0/src/test/java/rentalcompany/SeasonTest.java:[59,9] variable s might not have been initialized
+[ERROR] /tmp/arena/EXAM104-rentalcompany-B0/src/test/java/rentalcompany/SeasonTest.java:[79,9] variable s might not have been initialized
+[ERROR] /tmp/arena/EXAM104-rentalcompany-B0/src/test/java/rentalcompany/TimePeriodTabularTest.java:[61,35] incompatible types: long cannot be converted to boolean
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM104-rentalcompany-BB/src/test/java/rentalcompany/SeasonTest.java:[40,9] variable s might not have been initialized
+[ERROR] /tmp/arena/EXAM104-rentalcompany-BB/src/test/java/rentalcompany/SeasonTest.java:[59,9] variable s might not have been initialized
+[ERROR] /tmp/arena/EXAM104-rentalcompany-BB/src/test/java/rentalcompany/SeasonTest.java:[79,9] variable s might not have been initialized
+[ERROR] /tmp/arena/EXAM104-rentalcompany-BB/src/test/java/rentalcompany/TimePeriodTabularTest.java:[61,35] incompatible types: long cannot be converted to boolean
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure: Compilation failure: 
+[ERROR] /tmp/arena/EXAM104-rentalcompany-BB/src/test/java/rentalcompany/SeasonTest.java:[40,9] variable s might not have been initialized
+[ERROR] /tmp/arena/EXAM104-rentalcompany-BB/src/test/java/rentalcompany/SeasonTest.java:[59,9] variable s might not have been initialized
+[ERROR] /tmp/arena/EXAM104-rentalcompany-BB/src/test/java/rentalcompany/SeasonTest.java:[79,9] variable s might not have been initialized
+[ERROR] /tmp/arena/EXAM104-rentalcompany-BB/src/test/java/rentalcompany/TimePeriodTabularTest.java:[61,35] incompatible types: long cannot be converted to boolean
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM104-rentalcompany-B1/src/test/java/rentalcompany/SeasonTest.java:[40,9] variable s might not have been initialized
+[ERROR] /tmp/arena/EXAM104-rentalcompany-B1/src/test/java/rentalcompany/SeasonTest.java:[59,9] variable s might not have been initialized
+[ERROR] /tmp/arena/EXAM104-rentalcompany-B1/src/test/java/rentalcompany/SeasonTest.java:[79,9] variable s might not have been initialized
+[ERROR] /tmp/arena/EXAM104-rentalcompany-B1/src/test/java/rentalcompany/TimePeriodTabularTest.java:[61,35] incompatible types: long cannot be converted to boolean
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure: Compilation failure: 
+[ERROR] /tmp/arena/EXAM104-rentalcompany-B1/src/test/java/rentalcompany/SeasonTest.java:[40,9] variable s might not have been initialized
+[ERROR] /tmp/arena/EXAM104-rentalcompany-B1/src/test/java/rentalcompany/SeasonTest.java:[59,9] variable s might not have been initialized
+[ERROR] /tmp/arena/EXAM104-rentalcompany-B1/src/test/java/rentalcompany/SeasonTest.java:[79,9] variable s might not have been initialized
+[ERROR] /tmp/arena/EXAM104-rentalcompany-B1/src/test/java/rentalcompany/TimePeriodTabularTest.java:[61,35] incompatible types: long cannot be converted to boolean
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM104-rentalcompany-BA/src/test/java/rentalcompany/TimePeriodTabularTest.java:[61,35] incompatible types: long cannot be converted to boolean
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure
+[ERROR] /tmp/arena/EXAM104-rentalcompany-BA/src/test/java/rentalcompany/TimePeriodTabularTest.java:[61,35] incompatible types: long cannot be converted to boolean
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] /tmp/arena/EXAM104-templateengine-B0/src/test/java/templateengine/TemplateStateTest.java:[129,9] cannot find symbol
+  symbol:   method assertNoStateChange(templateengine.Engine,spy::assemble,spy::flush)
+  location: class templateengine.TemplateStateTest
+[ERROR] /tmp/arena/EXAM104-templateengine-BB/src/test/java/templateengine/TemplateStateTest.java:[129,9] cannot find symbol
+  symbol:   method assertNoStateChange(templateengine.Engine,spy::assemble,spy::flush)
+  location: class templateengine.TemplateStateTest
+[ERROR] /tmp/arena/EXAM104-templateengine-B2/src/test/java/templateengine/TemplateStateTest.java:[129,9] cannot find symbol
+  symbol:   method assertNoStateChange(templateengine.Engine,spy::assemble,spy::flush)
+  location: class templateengine.TemplateStateTest
+[ERROR] /tmp/arena/EXAM104-templateengine-B1/src/test/java/templateengine/TemplateStateTest.java:[129,9] cannot find symbol
+  symbol:   method assertNoStateChange(templateengine.Engine,spy::assemble,spy::flush)
+  location: class templateengine.TemplateStateTest
+[ERROR] /tmp/arena/EXAM104-templateengine-BA/src/test/java/templateengine/TemplateStateTest.java:[129,9] cannot find symbol
+  symbol:   method assertNoStateChange(templateengine.Engine,spy::assemble,spy::flush)
+  location: class templateengine.TemplateStateTest
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM141-rentalcompany-B0/src/test/java/rentalcompany/BookingTest.java:[46,2] reached end of file while parsing
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure
+[ERROR] /tmp/arena/EXAM141-rentalcompany-B0/src/test/java/rentalcompany/BookingTest.java:[46,2] reached end of file while parsing
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM141-rentalcompany-BB/src/test/java/rentalcompany/BookingTest.java:[46,2] reached end of file while parsing
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure
+[ERROR] /tmp/arena/EXAM141-rentalcompany-BB/src/test/java/rentalcompany/BookingTest.java:[46,2] reached end of file while parsing
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM141-rentalcompany-B1/src/test/java/rentalcompany/BookingTest.java:[46,2] reached end of file while parsing
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure
+[ERROR] /tmp/arena/EXAM141-rentalcompany-B1/src/test/java/rentalcompany/BookingTest.java:[46,2] reached end of file while parsing
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM141-rentalcompany-BA/src/test/java/rentalcompany/BookingTest.java:[46,2] reached end of file while parsing
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure
+[ERROR] /tmp/arena/EXAM141-rentalcompany-BA/src/test/java/rentalcompany/BookingTest.java:[46,2] reached end of file while parsing
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM124-rentalcompany-AB/src/test/java/rentalcompany/SeasonTest.java:[41,23] unreported exception java.lang.Exception; must be caught or declared to be thrown
+[ERROR] /tmp/arena/EXAM124-rentalcompany-AB/src/test/java/rentalcompany/SeasonTest.java:[59,23] unreported exception java.lang.Exception; must be caught or declared to be thrown
+[ERROR] /tmp/arena/EXAM124-rentalcompany-AB/src/test/java/rentalcompany/SeasonTest.java:[60,23] unreported exception java.lang.Exception; must be caught or declared to be thrown
+[ERROR] /tmp/arena/EXAM124-rentalcompany-AB/src/test/java/rentalcompany/SeasonTest.java:[75,23] unreported exception java.lang.Exception; must be caught or declared to be thrown
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure: Compilation failure: 
+[ERROR] /tmp/arena/EXAM124-rentalcompany-AB/src/test/java/rentalcompany/SeasonTest.java:[41,23] unreported exception java.lang.Exception; must be caught or declared to be thrown
+[ERROR] /tmp/arena/EXAM124-rentalcompany-AB/src/test/java/rentalcompany/SeasonTest.java:[59,23] unreported exception java.lang.Exception; must be caught or declared to be thrown
+[ERROR] /tmp/arena/EXAM124-rentalcompany-AB/src/test/java/rentalcompany/SeasonTest.java:[60,23] unreported exception java.lang.Exception; must be caught or declared to be thrown
+[ERROR] /tmp/arena/EXAM124-rentalcompany-AB/src/test/java/rentalcompany/SeasonTest.java:[75,23] unreported exception java.lang.Exception; must be caught or declared to be thrown
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM107-rentalcompany-AB/src/test/java/rentalcompany/SeasonTest.java:[41,23] unreported exception java.lang.Exception; must be caught or declared to be thrown
+[ERROR] /tmp/arena/EXAM107-rentalcompany-AB/src/test/java/rentalcompany/SeasonTest.java:[59,23] unreported exception java.lang.Exception; must be caught or declared to be thrown
+[ERROR] /tmp/arena/EXAM107-rentalcompany-AB/src/test/java/rentalcompany/SeasonTest.java:[60,23] unreported exception java.lang.Exception; must be caught or declared to be thrown
+[ERROR] /tmp/arena/EXAM107-rentalcompany-AB/src/test/java/rentalcompany/SeasonTest.java:[75,23] unreported exception java.lang.Exception; must be caught or declared to be thrown
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure: Compilation failure: 
+[ERROR] /tmp/arena/EXAM107-rentalcompany-AB/src/test/java/rentalcompany/SeasonTest.java:[41,23] unreported exception java.lang.Exception; must be caught or declared to be thrown
+[ERROR] /tmp/arena/EXAM107-rentalcompany-AB/src/test/java/rentalcompany/SeasonTest.java:[59,23] unreported exception java.lang.Exception; must be caught or declared to be thrown
+[ERROR] /tmp/arena/EXAM107-rentalcompany-AB/src/test/java/rentalcompany/SeasonTest.java:[60,23] unreported exception java.lang.Exception; must be caught or declared to be thrown
+[ERROR] /tmp/arena/EXAM107-rentalcompany-AB/src/test/java/rentalcompany/SeasonTest.java:[75,23] unreported exception java.lang.Exception; must be caught or declared to be thrown
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM136-rentalcompany-B0/src/test/java/rentalcompany/RentalCompanyTest.java:[66,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] /tmp/arena/EXAM136-rentalcompany-B0/src/test/java/rentalcompany/RentalCompanyTest.java:[67,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] /tmp/arena/EXAM136-rentalcompany-B0/src/test/java/rentalcompany/RentalCompanyTest.java:[68,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure: Compilation failure: 
+[ERROR] /tmp/arena/EXAM136-rentalcompany-B0/src/test/java/rentalcompany/RentalCompanyTest.java:[66,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] /tmp/arena/EXAM136-rentalcompany-B0/src/test/java/rentalcompany/RentalCompanyTest.java:[67,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] /tmp/arena/EXAM136-rentalcompany-B0/src/test/java/rentalcompany/RentalCompanyTest.java:[68,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM136-rentalcompany-BB/src/test/java/rentalcompany/RentalCompanyTest.java:[66,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] /tmp/arena/EXAM136-rentalcompany-BB/src/test/java/rentalcompany/RentalCompanyTest.java:[67,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] /tmp/arena/EXAM136-rentalcompany-BB/src/test/java/rentalcompany/RentalCompanyTest.java:[68,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure: Compilation failure: 
+[ERROR] /tmp/arena/EXAM136-rentalcompany-BB/src/test/java/rentalcompany/RentalCompanyTest.java:[66,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] /tmp/arena/EXAM136-rentalcompany-BB/src/test/java/rentalcompany/RentalCompanyTest.java:[67,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] /tmp/arena/EXAM136-rentalcompany-BB/src/test/java/rentalcompany/RentalCompanyTest.java:[68,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM136-rentalcompany-B1/src/test/java/rentalcompany/RentalCompanyTest.java:[66,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] /tmp/arena/EXAM136-rentalcompany-B1/src/test/java/rentalcompany/RentalCompanyTest.java:[67,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] /tmp/arena/EXAM136-rentalcompany-B1/src/test/java/rentalcompany/RentalCompanyTest.java:[68,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure: Compilation failure: 
+[ERROR] /tmp/arena/EXAM136-rentalcompany-B1/src/test/java/rentalcompany/RentalCompanyTest.java:[66,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] /tmp/arena/EXAM136-rentalcompany-B1/src/test/java/rentalcompany/RentalCompanyTest.java:[67,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] /tmp/arena/EXAM136-rentalcompany-B1/src/test/java/rentalcompany/RentalCompanyTest.java:[68,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] COMPILATION ERROR : 
+[ERROR] /tmp/arena/EXAM136-rentalcompany-BA/src/test/java/rentalcompany/RentalCompanyTest.java:[66,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] /tmp/arena/EXAM136-rentalcompany-BA/src/test/java/rentalcompany/RentalCompanyTest.java:[67,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] /tmp/arena/EXAM136-rentalcompany-BA/src/test/java/rentalcompany/RentalCompanyTest.java:[68,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:testCompile (default-testCompile) on project rentalcompany: Compilation failure: Compilation failure: 
+[ERROR] /tmp/arena/EXAM136-rentalcompany-BA/src/test/java/rentalcompany/RentalCompanyTest.java:[66,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] /tmp/arena/EXAM136-rentalcompany-BA/src/test/java/rentalcompany/RentalCompanyTest.java:[67,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] /tmp/arena/EXAM136-rentalcompany-BA/src/test/java/rentalcompany/RentalCompanyTest.java:[68,85] bookings has private access in rentalcompany.RentalCompany
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

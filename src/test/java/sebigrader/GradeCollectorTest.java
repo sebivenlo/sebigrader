@@ -28,6 +28,5 @@ public class GradeCollectorTest extends CollectorsTestBase {
         TestFileVisitor vst = new TestFileVisitor( ( Path path ) -> true, han );
         walk( p, vst );
         assertEquals( "25 results", 25, gcol.getResults().size() );
-        gcol.getResults().keySet().forEach( System.out::println );
     }
 }

@@ -8,6 +8,7 @@ import java.util.Objects;
  * @author Pieter van den Hombergh {@code pieter.van.den.hombergh@gmail.com}
  */
 public class GradeKey {
+
     private final String event;
     private final String stick;
     private final Integer task;
@@ -18,12 +19,11 @@ public class GradeKey {
         this.task = task;
     }
 
-    
-    static GradeKey of( TestResult tr){
-        String e= tr.getEvent();
-        String st =tr.getStick();
+    static GradeKey of( TestResult tr ) {
+        String e = tr.getEvent();
+        String st = tr.getStick();
         Integer t = tr.getTask();
-        return new GradeKey(e,st,t);
+        return new GradeKey( e, st, t );
     }
 
     @Override
@@ -75,6 +75,5 @@ public class GradeKey {
     public Integer getTask() {
         return task;
     }
-    
-    
+
 }
